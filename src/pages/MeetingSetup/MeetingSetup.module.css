@@ -1,0 +1,61 @@
+.page {
+  display: grid;
+  gap: var(--space-6);
+  max-width: 42rem;
+  justify-items: start;
+}
+
+.intro {
+  color: var(--ink-muted);
+  font-size: var(--step-0);
+}
+
+.form {
+  display: grid;
+  gap: var(--space-6);
+  width: 100%;
+  justify-items: start;
+}
+
+.fieldError {
+  margin-top: var(--space-2);
+  color: var(--must);
+  font-weight: 600;
+}
+
+.context {
+  width: 100%;
+}
+
+.context h2 {
+  font-size: var(--step-1);
+}
+
+.summary {
+  cursor: pointer;
+  font-weight: 650;
+}
+
+.summary:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.sheetBody {
+  display: grid;
+  gap: var(--space-3);
+  padding-top: var(--space-3);
+}
+
+.sheetBody h4 {
+  font-size: var(--step-0);
+}
+
+.sheetBody ul {
+  padding-left: var(--space-5);
+}
+
+.notes {
+  display: grid;
+  gap: var(--space-4);
+}
