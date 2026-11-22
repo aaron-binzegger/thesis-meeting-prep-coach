@@ -58,6 +58,7 @@ describe('Journey', () => {
     renderWithRouter(<Journey />, { route: '/journey' });
     await user.click(screen.getByRole('button', { name: 'Pre-submission' }));
     await user.click(screen.getByText('Show example sheet'));
-    expect(screen.getByRole('article', { name: 'Prep sheet' })).toBeInTheDocument();
+    // The sheet renders on the <details> toggle event, which jsdom fires asynchronously.
+    expect(await screen.findByRole('article', { name: 'Prep sheet' })).toBeInTheDocument();
   });
 });
