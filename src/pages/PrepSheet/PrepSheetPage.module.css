@@ -31,3 +31,36 @@
   color: var(--ink-muted);
   font-size: var(--step--1);
 }
+
+.sheet {
+  min-width: 0;
+}
+
+/* Wide screens: the sheet keeps its reading width, actions sit in a rail beside it. */
+@media (min-width: 72rem) {
+  .withRail {
+    grid-template-columns: minmax(0, var(--sheet-max)) minmax(13rem, 17rem);
+    grid-template-areas:
+      'banners banners'
+      'sheet actions';
+    column-gap: var(--space-7);
+    align-items: start;
+  }
+
+  .withRail .banners {
+    grid-area: banners;
+    max-width: var(--sheet-max);
+  }
+
+  .withRail .sheet {
+    grid-area: sheet;
+  }
+
+  .withRail .actions {
+    position: sticky;
+    top: var(--space-5);
+    grid-area: actions;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
