@@ -142,6 +142,24 @@
   }
 
   .section {
-    padding-block: 3mm;
+    padding-block: 1.5mm;
+  }
+
+  .row + .row {
+    margin-top: 1.5mm;
+  }
+
+  .title {
+    margin-bottom: 1mm;
+    font-size: var(--step-1);
+  }
+
+  /* The italic quote is enough on paper; the label repeats on every row. */
+  .quoteLabel {
+    display: none;
+  }
+
+  .quote {
+    line-height: 1.25;
   }
 }

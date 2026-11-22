@@ -10,6 +10,13 @@ const icons: Record<CalloutTone, ReactNode> = {
   prototype: <Info size={20} />,
 };
 
+/** Default accessible names, so several callouts on one page stay distinguishable landmarks. */
+const labels: Record<CalloutTone, string> = {
+  boundaries: 'What this coach does and does not do',
+  privacy: 'Privacy',
+  prototype: 'Prototype note',
+};
+
 export interface CalloutProps extends Omit<HTMLAttributes<HTMLElement>, 'title'> {
   tone: CalloutTone;
   /** Short visible heading. Rendered as a paragraph label, not a document heading. */
@@ -26,6 +33,7 @@ export function Callout({ tone, heading, className, children, ...rest }: Callout
   return (
     <aside
       className={[styles.callout, styles[tone], className].filter(Boolean).join(' ')}
+      aria-label={labels[tone]}
       {...rest}
     >
       {icon && (

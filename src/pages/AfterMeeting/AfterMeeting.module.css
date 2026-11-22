@@ -1,0 +1,24 @@
+.page {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 42rem;
+  justify-items: start;
+}
+
+.intro {
+  color: var(--ink-muted);
+  font-size: var(--step-0);
+}
+
+.note {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-panel);
+  background: var(--tint);
+}
+
+.form {
+  display: grid;
+  gap: var(--space-6);
+  width: 100%;
+  justify-items: start;
+}
