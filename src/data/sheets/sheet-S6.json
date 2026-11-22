@@ -1,0 +1,86 @@
+{
+  "id": "sheet-S6",
+  "runId": "PLACEHOLDER",
+  "model": "Placeholder (real R3 output follows)",
+  "goal": "Decide how to continue with your thesis despite the data access problem.",
+  "sinceLastTime": {
+    "decided": ["The method has to be settled first"],
+    "carriedOver": ["Whether the data access will ever work", "The plan if it does not"]
+  },
+  "agenda": [
+    {
+      "minutes": 8,
+      "topic": "Data access",
+      "goal": "Explain the situation and what is still unclear"
+    },
+    {
+      "minutes": 12,
+      "topic": "Method",
+      "goal": "Settle the method you need to clarify"
+    },
+    {
+      "minutes": 10,
+      "topic": "Fallback",
+      "goal": "Discuss options if the data does not come"
+    },
+    {
+      "minutes": 5,
+      "topic": "Structure",
+      "goal": "Get a view on the structure of your pages"
+    },
+    {
+      "minutes": 5,
+      "topic": "Next steps",
+      "goal": "Agree on what is next"
+    }
+  ],
+  "questions": [
+    {
+      "priority": "must",
+      "text": "What are my options if the data does not arrive?",
+      "fromNotes": "was passiert wenn die Daten nie kommen?"
+    },
+    {
+      "priority": "must",
+      "text": "Does public data fit my research question?",
+      "fromNotes": "maybe use public data instead?"
+    },
+    {
+      "priority": "should",
+      "text": "How can I settle the method when the data is uncertain?",
+      "fromNotes": "Methode klären, hab ich noch nicht"
+    },
+    {
+      "priority": "should",
+      "text": "Does the structure of my first five pages work?",
+      "fromNotes": "I wrote 5 pages but dont know if the structure is right"
+    },
+    {
+      "priority": "if-time",
+      "text": "How do I plan the time when the data is uncertain?",
+      "fromNotes": "Zeitplan ist eng"
+    }
+  ],
+  "verifyFirst": [
+    {
+      "item": "The deadline for the thesis",
+      "whereToCheck": "Your programme's regulations"
+    },
+    {
+      "item": "Whether a change of data source needs approval",
+      "whereToCheck": "Your supervisor"
+    }
+  ],
+  "supervisorDecides": [
+    {
+      "decision": "How to handle the data problem",
+      "options": [
+        "Wait for the company data",
+        "Switch to public data",
+        "Narrow the question to what you have"
+      ]
+    }
+  ],
+  "nextStep": "Write two lines on what the data access problem is and what you already tried, with no company names.",
+  "privacyWarning": "Your notes mention a company name and a colleague. Remove confidential company details and personal names before you use or share them."
+}

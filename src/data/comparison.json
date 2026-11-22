@@ -1,0 +1,64 @@
+{
+  "status": "placeholder",
+  "iterations": [
+    {
+      "id": "baseline",
+      "name": "Baseline",
+      "change": "A plain \"help me prepare my thesis meeting\" prompt",
+      "keyResult": "Invented institutional facts in most runs (placeholder)"
+    },
+    {
+      "id": "R1",
+      "name": "R1: Structure",
+      "change": "Added a fixed one-page sheet structure and a limit on questions",
+      "keyResult": "Clearer sheets, but still some invented facts (placeholder)"
+    },
+    {
+      "id": "R2",
+      "name": "R2: Guardrails",
+      "change": "Added the zero-institution-facts rule and the Verify first block",
+      "keyResult": "Far fewer invented facts (placeholder)"
+    },
+    {
+      "id": "R3",
+      "name": "R3: Final",
+      "change": "Added follow-up context, privacy warning and clarifying questions",
+      "keyResult": "Stable across all six scenarios (placeholder)"
+    }
+  ],
+  "models": [
+    {
+      "name": "Claude",
+      "tested": "6 scenarios (placeholder)",
+      "result": "Followed all rules (placeholder)"
+    },
+    {
+      "name": "ChatGPT",
+      "tested": "6 scenarios (placeholder)",
+      "result": "Followed most rules (placeholder)"
+    },
+    {
+      "name": "Gemini",
+      "tested": "6 scenarios (placeholder)",
+      "result": "Followed most rules (placeholder)"
+    }
+  ],
+  "keyResults": [
+    {
+      "label": "Invented institutional facts",
+      "value": "0 of 6 scenarios (placeholder)"
+    },
+    {
+      "label": "Questions per sheet",
+      "value": "6 or fewer in every run (placeholder)"
+    },
+    {
+      "label": "Topic picked for the student",
+      "value": "0 of 6 scenarios (placeholder)"
+    },
+    {
+      "label": "Models tested",
+      "value": "3 (placeholder)"
+    }
+  ]
+}

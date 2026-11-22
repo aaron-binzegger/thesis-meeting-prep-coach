@@ -1,0 +1,90 @@
+[
+  {
+    "id": "S1",
+    "meeting": "kickoff",
+    "minutes": 30,
+    "topicIdea": "torn",
+    "notes": "Idea A: social media use + study stress (survey?)\nIdea B: remote work and team trust?? maybe interviews\nA feels easier but B more interesting\ndont know which one is better for a BA thesis\nno supervisor feedback yet, only had 1 short email\nneed to ask about the proposal - how long??\nwho is 2nd reader?? ask\nliterature - found maybe 5 papers for A, 2 for B\nworried about time, job on thursdays + fridays\nmethod - not sure, quant or qual\nmaybe ask if topic can change later",
+    "sheetId": "sheet-S1",
+    "baselineText": "Here is a comprehensive guide to prepare for your thesis meeting!\n\n1. Choose your topic\nBased on your notes, I recommend Idea A (social media use and study stress). It is easier and has more literature, so it is the better choice for a bachelor thesis.\n\n2. Know the key dates\nMake sure you submit your thesis proposal by 15 December and the final thesis by 30 April. The proposal should be 3 pages.\n\n3. Questions to ask your supervisor\n- What is your preferred citation style?\n- How often should we meet?\n- Can you recommend literature?\n- What methods do you recommend?\n- How many pages should the thesis be?\n- What are the grading criteria?\n- Who is the second reader?\n- Can I change my topic later?\n- What software should I use?\n\n4. General tips\nBe on time, be polite, take notes and show enthusiasm. Remember that a good thesis requires dedication and planning. Good luck!",
+    "baselineAnnotations": [
+      "Picked the topic for the student",
+      "Invented a submission date and a page count",
+      "9 questions, no priorities",
+      "Generic advice, nothing from the student's own notes"
+    ]
+  },
+  {
+    "id": "S2",
+    "meeting": "kickoff",
+    "minutes": 20,
+    "topicIdea": "none",
+    "notes": "no idea what to write about\nmaybe something with marketing? or not\nlike sports but not sure thats a topic\nfriends say just pick something easy\nwhat does supervisor expect from me??\nno experience w/ research\nhow many meetings do we get?\nscared to look stupid",
+    "sheetId": "sheet-S2",
+    "baselineText": "Great that you are starting your thesis! Here is a preparation plan.\n\n1. Your topic\nSince you like sports and marketing, a good topic would be \"The influence of sponsorship on brand perception in football\". This is a popular and manageable topic.\n\n2. Timeline\nA bachelor thesis usually takes 14 weeks and should be about 40 pages and 10,000 words. The deadline is normally in early June.\n\n3. Questions for your supervisor\n- What are your research interests?\n- What is the expected length?\n- What are the formal requirements?\n- How many credits is the thesis worth?\n- Which databases should I use?\n- Do you have examples of good theses?\n- What is the grading scheme?\n- How often do we meet?\n\n4. Tips\nStay organised, start early, and do not be afraid to ask questions. Preparation is the key to success!",
+    "baselineAnnotations": [
+      "Picked a topic for a student who has none",
+      "Invented a length, a word count and a deadline",
+      "8 questions, no priorities",
+      "Does not help the student find their own direction"
+    ]
+  },
+  {
+    "id": "S3",
+    "meeting": "kickoff",
+    "minutes": 45,
+    "topicIdea": "one",
+    "notes": "Topic: onboarding of new hires in remote teams\nRQ draft: How do remote onboarding practices affect time-to-productivity?\nMethod plan: semi-structured interviews (6-8 ppl), thematic analysis\nLiterature: 12 sources so far, 3 core\nTimeline: lit review first, interviews later\nOpen: is the RQ too broad?\nOpen: ethics / consent for interviews?\nNeed: supervisor feedback on the scope\nNeed: confirm proposal format\nGoal for meeting: agree on RQ and next steps",
+    "sheetId": "sheet-S3"
+  },
+  {
+    "id": "S4",
+    "meeting": "followup",
+    "minutes": 30,
+    "topicIdea": "torn",
+    "notes": "Meeting 2 - update\nRead ~8 papers now, A (stress) has way more material\nB still interesting but cant find a good source for trust measures\nsupervisor said last time to compare both?? did that kind of\nstill not 100% sure which one\nsurvey for A: have 1 draft questionnaire, 30 questions, too long?\nno reply yet from study office re: ethics\nask about data protection for the survey\ntime: 2 weeks lost bc of exams",
+    "context": {
+      "previousSheetId": "sheet-S1",
+      "afterMeetingNotes": "Decided: both ideas stay open for now, the plan is to compare them on available literature and data\nOpen: which idea to take, and how long the proposal should be\nNext: read more on both, draft one paragraph per idea"
+    },
+    "sheetId": "sheet-S4",
+    "baselineText": "Here is how to prepare for your second thesis meeting.\n\n1. Decide on your topic\nYou should go with Idea A, since you already have more literature. Drop Idea B to save time.\n\n2. Review the timeline\nThe proposal is due on 20 January and must be 4 pages. Make sure you hand it in on time.\n\n3. Questions for your supervisor\n- Is my questionnaire good?\n- Is 30 questions too long?\n- What sample size do I need?\n- Do I need ethics approval?\n- How do I cite my sources?\n- Can you read my draft?\n- What should I do next?\n\n4. General advice\nBe confident, summarise your progress and set clear goals. You are doing great!",
+    "baselineAnnotations": [
+      "Ignores what was decided in meeting 1",
+      "Picked the topic for the student, although it was left open",
+      "Invented a deadline and a page count",
+      "7 questions, no priorities"
+    ]
+  },
+  {
+    "id": "S5",
+    "meeting": "followup",
+    "minutes": 30,
+    "topicIdea": "one",
+    "notes": "Update since kick-off\n- RQ revised after last meeting (narrower: only first 90 days)\n- 14 sources, 4 core\n- interview guide v1 done\n- 2 pilot interviews done, both ok\nProblems:\n- recruiting: only 3 people confirmed\n- consent form wording unclear\nQuestions:\n- is 6 interviews enough?\n- how to cite company docs?\nPlan: finish guide v2, recruit through LinkedIn?",
+    "context": {
+      "previousSheetId": "sheet-S3",
+      "afterMeetingNotes": "Decided: topic stays, RQ to be narrowed, interviews as method\nOpen: how many interviews and the ethics question\nNext: write interview guide, start recruiting"
+    },
+    "sheetId": "sheet-S5"
+  },
+  {
+    "id": "S6",
+    "meeting": "followup",
+    "minutes": 40,
+    "topicIdea": "one",
+    "notes": "Meeting 2 - Sara\nProblem: Zugang zu den Daten fehlt!!\nFirma X will mir die Kundendaten nicht geben, Kollege Peter sagt 'vielleicht nach Q3'\nmaybe use public data instead? not sure if that fits the RQ\nBetreuer hat gesagt ich soll die Methode klären, hab ich noch nicht\nliterature review is ok, ~20 Quellen\nI wrote 5 pages but dont know if the structure is right\nZeitplan ist eng, Abgabe feels close\nwas passiert wenn die Daten nie kommen?\nneed decision soon",
+    "context": {
+      "afterMeetingNotes": "Decided: method has to be settled before anything else\nOpen: whether the data access will ever work, and the plan if not\nNext: clarify the method and ask what the fallback could be"
+    },
+    "sheetId": "sheet-S6"
+  },
+  {
+    "id": "X4",
+    "meeting": "presubmission",
+    "minutes": 30,
+    "topicIdea": "one",
+    "notes": "Pre-submission meeting\nDraft is about 80% done, chapters 1-4 written\nChapter 5 (discussion) still missing\nnot sure if conclusion should repeat the results\nsupervisor feedback from last time: 'tighten the intro'\ndid that but not sure its enough\nformatting: citation style inconsistent in some places\nappendix - what goes in there?\nabstract not written yet\nhow much time does supervisor need to read the final draft??",
+    "sheetId": "sheet-X4"
+  }
+]
