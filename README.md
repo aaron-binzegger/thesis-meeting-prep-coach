@@ -2,11 +2,11 @@
 
 Turn messy notes into a one-page prep sheet for your next thesis supervisor meeting, even if you don't have a topic yet.
 
-[![CI](https://github.com/Xx-Aaron/thesis-meeting-prep-coach/actions/workflows/ci.yml/badge.svg)](https://github.com/Xx-Aaron/thesis-meeting-prep-coach/actions/workflows/ci.yml)
-[![Deploy](https://github.com/Xx-Aaron/thesis-meeting-prep-coach/actions/workflows/deploy.yml/badge.svg)](https://github.com/Xx-Aaron/thesis-meeting-prep-coach/actions/workflows/deploy.yml)
+[![CI](https://github.com/aaron-binzegger/thesis-meeting-prep-coach/actions/workflows/ci.yml/badge.svg)](https://github.com/aaron-binzegger/thesis-meeting-prep-coach/actions/workflows/ci.yml)
+[![Deploy](https://github.com/aaron-binzegger/thesis-meeting-prep-coach/actions/workflows/deploy.yml/badge.svg)](https://github.com/aaron-binzegger/thesis-meeting-prep-coach/actions/workflows/deploy.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-**Live demo:** https://xx-aaron.github.io/thesis-meeting-prep-coach/
+**Live demo:** https://aaron-binzegger.github.io/thesis-meeting-prep-coach/
 
 <!-- TODO: screenshot or GIF of the main flow (docs/screenshots/) -->
 

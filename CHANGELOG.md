@@ -16,4 +16,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Pull request template, MIT license, README skeleton and this changelog.
 - Minimal start page that shows the app name.
 
-[Unreleased]: https://github.com/Xx-Aaron/thesis-meeting-prep-coach/commits/main
+[Unreleased]: https://github.com/aaron-binzegger/thesis-meeting-prep-coach/commits/main
