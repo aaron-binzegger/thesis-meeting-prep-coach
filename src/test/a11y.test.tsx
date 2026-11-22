@@ -21,6 +21,18 @@ describe('accessibility (axe)', () => {
     expect(await axeViolations(container)).toEqual([]);
   });
 
+  it.each([
+    '/journey',
+    '/meeting/1/setup',
+    '/meeting/1/after',
+    '/meeting/2/setup',
+    '/meeting/1/sheet',
+  ])('has no violations on %s', async (route) => {
+    const { container } = renderWithRouter(<App />, { route });
+    await screen.findByRole('heading', { level: 1 });
+    expect(await axeViolations(container)).toEqual([]);
+  });
+
   it('has no violations on the styleguide', async () => {
     const { container } = renderWithRouter(<App />, { route: '/styleguide' });
     await screen.findByRole('heading', { level: 1, name: 'Styleguide' });
