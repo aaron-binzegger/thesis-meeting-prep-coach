@@ -1,0 +1,22 @@
+.card {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  border-radius: var(--radius-panel);
+}
+
+.panel {
+  border: 1px solid var(--paper-edge);
+  background: var(--paper);
+}
+
+.tinted {
+  border: 1px solid transparent;
+  background: var(--tint);
+}
+
+@media (forced-colors: active) {
+  .tinted {
+    border-color: CanvasText;
+  }
+}
