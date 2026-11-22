@@ -27,6 +27,8 @@ describe('accessibility (axe)', () => {
     '/meeting/1/after',
     '/meeting/2/setup',
     '/meeting/1/sheet',
+    '/how-it-works',
+    '/use-it',
   ])('has no violations on %s', async (route) => {
     const { container } = renderWithRouter(<App />, { route });
     await screen.findByRole('heading', { level: 1 });
