@@ -1,0 +1,4 @@
+/* Self-hosted fonts (no external requests). */
+@import '@fontsource-variable/newsreader/opsz.css';
+@import '@fontsource-variable/newsreader/opsz-italic.css';
+@import '@fontsource-variable/atkinson-hyperlegible-next/wght.css';
