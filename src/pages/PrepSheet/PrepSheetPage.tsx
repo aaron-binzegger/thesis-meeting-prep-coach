@@ -2,6 +2,7 @@ import { ClipboardCopy, NotebookPen, Printer } from 'lucide-react';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Button, ButtonLink } from '../../components/Button/Button.tsx';
+import { CompareView } from '../../components/Compare/CompareView.tsx';
 import { Callout } from '../../components/Callout/Callout.tsx';
 import { PrepSheetView } from '../../components/PrepSheet/PrepSheetView.tsx';
 import { getMeetingType, getScenario, getSheet } from '../../data/index.ts';
@@ -54,6 +55,8 @@ export default function PrepSheetPage() {
     }
   }
 
+  const sheetView = <PrepSheetView sheet={sheet} scenario={scenario} meetingTitle={meetingTitle} />;
+
   return (
     <div className={styles.page}>
       <div className={styles.banners} data-print="hide">
@@ -61,7 +64,7 @@ export default function PrepSheetPage() {
         {sheet.privacyWarning && <Callout tone="privacy">{sheet.privacyWarning}</Callout>}
       </div>
 
-      <PrepSheetView sheet={sheet} scenario={scenario} meetingTitle={meetingTitle} />
+      {session.compareMode ? <CompareView scenario={scenario}>{sheetView}</CompareView> : sheetView}
 
       <div className={styles.actions} data-print="hide">
         <Button variant="secondary" icon={<ClipboardCopy />} onClick={copy}>
