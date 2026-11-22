@@ -29,5 +29,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Prep sheet with agenda table and time bar, grouped questions with notes in the margin, Verify first, supervisor decisions, next step, copy as text and print to one A4 page.
 - Example banner when typed notes are answered with a similar student's sheet, and a placeholder badge for placeholder data.
 - Axe checks on every core-flow screen.
+- Demo mode: persona panel (Mia, Luca, Sara, Jonas) that pre-fills every form, shareable `?persona=` links, and a "Compare with a plain AI prompt" switch.
+- Compare view: plain AI output next to the coach sheet, with annotated differences, laid out for a 1280 px projector.
+- "Also available" panels on the Journey, including the pre-submission example sheet (X4).
+- How it works page: workflow diagram, what the coach never does, prompt iterations and key results, privacy and limitations.
+- Use it in your own AI page: copy-paste prompt and a downloadable `SKILL.md` (placeholders until the final prompt is in).
 
 [Unreleased]: https://github.com/aaron-binzegger/thesis-meeting-prep-coach/commits/main
