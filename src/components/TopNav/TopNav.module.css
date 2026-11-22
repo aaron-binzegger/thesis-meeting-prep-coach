@@ -1,0 +1,111 @@
+.header {
+  border-bottom: 1px solid var(--paper-edge);
+  background: var(--desk);
+}
+
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3) var(--space-5);
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding: var(--space-3) var(--gutter);
+}
+
+.home {
+  display: inline-flex;
+  min-height: var(--control-min);
+  align-items: center;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.home:hover {
+  color: var(--ink);
+}
+
+.menuToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--control-min);
+  padding: 0 var(--space-3);
+  border: 1.5px solid var(--paper-edge);
+  border-radius: var(--radius-control);
+  background: var(--paper);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.nav {
+  display: none;
+  flex-basis: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding-block: var(--space-2) var(--space-4);
+}
+
+.nav[data-open] {
+  display: flex;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  display: inline-flex;
+  min-height: var(--control-min);
+  align-items: center;
+  color: var(--ink);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+}
+
+/* Current page: underlined like a word marked with a pen. */
+.link[aria-current='page'] {
+  color: var(--ink);
+  font-weight: 650;
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 0.35em;
+}
+
+@media (min-width: 60rem) {
+  .bar {
+    flex-wrap: nowrap;
+  }
+
+  .menuToggle {
+    display: none;
+  }
+
+  .nav,
+  .nav[data-open] {
+    display: flex;
+    flex-basis: auto;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-6);
+    padding: 0;
+  }
+
+  .links {
+    flex-direction: row;
+    gap: var(--space-5);
+  }
+}
