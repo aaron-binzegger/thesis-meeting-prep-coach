@@ -6,6 +6,7 @@ import './styles/tokens.css';
 import './styles/global.css';
 import './styles/print.css';
 import App from './App.tsx';
+import { SessionProvider } from './state/SessionProvider.tsx';
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
@@ -14,8 +15,10 @@ if (!rootElement) {
 
 createRoot(rootElement).render(
   <StrictMode>
-    <HashRouter>
-      <App />
-    </HashRouter>
+    <SessionProvider>
+      <HashRouter>
+        <App />
+      </HashRouter>
+    </SessionProvider>
   </StrictMode>,
 );
