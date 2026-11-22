@@ -99,7 +99,7 @@ The app code was written with **Claude Code**. TODO: short summary and link to [
 ## Authors
 
 - Aaron Binzegger
-- Darvin [LASTNAME] <!-- TODO: last name -->
+- Darvin Windlin
 
 Final project of the module _Prompt Engineering_, student project at HSLU, autumn semester 2026.
 
