@@ -1,0 +1,29 @@
+/*
+ * A real highlighter: slightly uneven ends, a stroke that sits low on the
+ * line and wraps cleanly across line breaks.
+ */
+.highlight {
+  padding: 0.05em 0.25em;
+  margin-inline: -0.1em;
+  border-radius: 0.3em 0.15em 0.35em 0.1em;
+  background: linear-gradient(
+    100deg,
+    transparent 0.2em,
+    var(--highlighter) 0.35em,
+    var(--highlighter) calc(100% - 0.4em),
+    transparent calc(100% - 0.1em)
+  );
+  background-size: 100% 78%;
+  background-position: 0 70%;
+  background-repeat: no-repeat;
+  color: inherit;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+@media (forced-colors: active) {
+  .highlight {
+    background: Mark;
+    color: MarkText;
+  }
+}

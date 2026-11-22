@@ -1,0 +1,147 @@
+/*
+ * The sheet uses one two-column grid for every row:
+ *   [margin notes] | [content]
+ * The red margin line sits in the gap between the two columns.
+ * On phones the margin column collapses and notes move under the content.
+ */
+.sheet {
+  --sheet-pad: var(--space-4);
+  --sheet-gap: var(--space-5);
+  --sheet-margin: 0rem;
+
+  position: relative;
+  max-width: var(--sheet-max);
+  padding: var(--space-5) var(--sheet-pad) var(--space-6);
+  border-radius: var(--radius-paper);
+  background: var(--paper);
+  box-shadow: var(--shadow-paper);
+  overflow-wrap: anywhere;
+}
+
+/* Two blue header rules, like the top of a notebook page. */
+.sheet::before {
+  content: '';
+  position: absolute;
+  inset: var(--space-2) 0 auto;
+  height: 4px;
+  border-block: 1px solid var(--ruling);
+}
+
+/* Red margin line. */
+.sheet::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--sheet-pad) + var(--sheet-margin) + var(--sheet-gap) / 2);
+  width: 1.5px;
+  background: var(--margin-red);
+  pointer-events: none;
+}
+
+.section {
+  padding-block: var(--space-5);
+}
+
+.section + .section {
+  border-top: 1px solid var(--ruling);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: var(--sheet-margin) minmax(0, 1fr);
+  grid-template-areas:
+    '. body'
+    '. note';
+  column-gap: var(--sheet-gap);
+}
+
+.row + .row {
+  margin-top: var(--space-4);
+}
+
+.row > :not(.body, .note) {
+  grid-area: body;
+}
+
+.body {
+  grid-area: body;
+  min-width: 0;
+}
+
+.note {
+  grid-area: note;
+  margin-top: var(--space-1);
+}
+
+.title {
+  font-size: var(--step-2);
+  margin-bottom: var(--space-2);
+}
+
+.quote {
+  color: var(--ink-muted);
+  font-family: var(--font-serif);
+  font-size: var(--step--1);
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.quoteLabel {
+  display: block;
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.quote q {
+  quotes: '\201C' '\201D';
+}
+
+@media (min-width: 48rem) {
+  .sheet {
+    --sheet-pad: var(--space-5);
+    --sheet-gap: var(--space-6);
+    --sheet-margin: var(--margin-col);
+
+    padding-block: var(--space-6) var(--space-7);
+    padding-right: var(--space-7);
+  }
+
+  .row {
+    grid-template-areas: 'note body';
+  }
+
+  .note {
+    margin-top: 0.2em;
+    text-align: right;
+  }
+}
+
+@media print {
+  .sheet {
+    --sheet-pad: 0rem;
+    --sheet-gap: 6mm;
+    --sheet-margin: var(--margin-col);
+
+    max-width: none;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .sheet::before {
+    display: none;
+  }
+
+  .row {
+    grid-template-areas: 'note body';
+  }
+
+  .note {
+    text-align: right;
+  }
+
+  .section {
+    padding-block: 3mm;
+  }
+}

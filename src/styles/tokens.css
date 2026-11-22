@@ -1,0 +1,83 @@
+/*
+ * Design tokens – "the ruled notebook".
+ * One sheet of paper on a desk: blue-black ink, blue rules, a red margin line,
+ * a highlighter for things to verify. Text colours are checked for >= 4.5:1
+ * contrast on --paper and --desk (see src/styles/tokens.test.ts).
+ */
+:root {
+  /* Surfaces */
+  --desk: #e9ece8;
+  --paper: #ffffff;
+  --paper-edge: #cfd5de;
+  --ruling: #d5dce6;
+  --tint: #e6ebf5;
+
+  /* Ink */
+  --ink: #1b2440;
+  --ink-muted: #4f5870;
+  --accent: #24407a;
+  --accent-strong: #182d58;
+  --on-accent: #ffffff;
+
+  /* Notebook marks */
+  --margin-red: #c8473d;
+  --highlighter: #f4e04d;
+
+  /* Priorities: always paired with an icon and a text label */
+  --must: #b0362c;
+  --should: #8a5a00;
+  --iftime: #4a5768;
+
+  /* Focus */
+  --focus: #24407a;
+  --focus-ring: 0 0 0 2px var(--paper), 0 0 0 5px var(--focus);
+
+  /* Typography */
+  --font-serif: 'Newsreader Variable', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --font-sans:
+    'Atkinson Hyperlegible Next Variable', 'Segoe UI', system-ui, -apple-system, sans-serif;
+
+  /* Type scale (rem, root = 16px). Body copy is --step-0 = 18px. */
+  --step--1: 1rem;
+  --step-0: 1.125rem;
+  --step-1: 1.375rem;
+  --step-2: 1.75rem;
+  --step-3: clamp(1.875rem, 1.5rem + 1.6vw, 2.5rem);
+  --step-4: clamp(2.25rem, 1.6rem + 2.8vw, 3.5rem);
+
+  --leading-body: 1.55;
+  --leading-tight: 1.15;
+  --measure: 68ch;
+
+  /* Spacing: 4px scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+
+  /* Radius follows hierarchy: paper is nearly square, controls are softer */
+  --radius-paper: 3px;
+  --radius-panel: 10px;
+  --radius-control: 8px;
+  --radius-pill: 999px;
+
+  /* Layout */
+  --page-max: 72rem;
+  --sheet-max: 52rem;
+  --margin-col: 10.5rem;
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+  --control-min: 2.75rem;
+
+  /* Elevation: paper lies on the desk, it does not float */
+  --shadow-paper: 0 1px 0 var(--paper-edge), 0 2px 6px rgb(27 36 64 / 6%);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --duration-fast: 120ms;
+  --duration-base: 220ms;
+  --stagger: 60ms;
+}

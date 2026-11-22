@@ -1,0 +1,57 @@
+/*
+ * Print: only the prep sheet. Navigation, footer and actions disappear,
+ * and the sheet fills an A4 page.
+ */
+@page {
+  size: A4;
+  margin: 14mm 14mm 16mm;
+}
+
+@media print {
+  :root {
+    --step--1: 9pt;
+    --step-0: 10.5pt;
+    --step-1: 12pt;
+    --step-2: 14pt;
+    --step-3: 17pt;
+    --step-4: 20pt;
+    --margin-col: 30mm;
+  }
+
+  html,
+  body {
+    background: #fff;
+  }
+
+  body {
+    line-height: 1.4;
+  }
+
+  [data-print='hide'] {
+    display: none !important;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    break-after: avoid;
+  }
+
+  section,
+  li,
+  tr {
+    break-inside: avoid;
+  }
+
+  /* Keep the notebook marks (margin line, highlighter) on paper. */
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
