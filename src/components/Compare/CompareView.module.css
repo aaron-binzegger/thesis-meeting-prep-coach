@@ -1,0 +1,100 @@
+.compare,
+.fallback {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.intro {
+  display: grid;
+  gap: var(--space-2);
+  font-size: var(--step-0);
+}
+
+.title {
+  font-size: var(--step-2);
+}
+
+.noBaseline {
+  padding: var(--space-3) var(--space-4);
+  border-left: 4px solid var(--margin-red);
+  background: var(--tint);
+  font-weight: 600;
+}
+
+.columns {
+  display: grid;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+.baseline,
+.coach {
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.colTitle {
+  font-family: var(--font-sans);
+  font-size: var(--step-1);
+}
+
+.text {
+  margin: 0;
+  padding: var(--space-4);
+  border: 1px solid var(--paper-edge);
+  border-radius: var(--radius-panel);
+  background: #eef0f3;
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--step-0);
+  line-height: var(--leading-body);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.notes {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border-left: 3px solid var(--margin-red);
+  background: var(--paper);
+}
+
+.notesTitle {
+  color: var(--margin-red);
+  font-family: var(--font-sans);
+  font-size: var(--step-0);
+  font-weight: 650;
+}
+
+.noteList {
+  display: grid;
+  gap: var(--space-2);
+  padding-left: var(--space-5);
+  font-size: var(--step-0);
+  font-weight: 500;
+}
+
+.noteList li::marker {
+  color: var(--margin-red);
+  font-weight: 700;
+}
+
+@media (min-width: 64rem) {
+  .columns {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  }
+
+  /* The sheet shares the width with the baseline: narrower margin, calmer goal. */
+  .coach {
+    --margin-col: 7rem;
+    --step-3: 1.75rem;
+  }
+}
+
+@media print {
+  .columns {
+    display: block;
+  }
+}

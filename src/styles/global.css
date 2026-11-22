@@ -95,9 +95,12 @@ strong {
   font-weight: 650;
 }
 
-code {
+code,
+pre {
   font-family: ui-monospace, 'Cascadia Code', Consolas, monospace;
   font-size: 0.9em;
+  /* Show code exactly as typed: no ligatures that turn <!-- or -> into arrows. */
+  font-variant-ligatures: none;
 }
 
 /* Focus: always visible for keyboard users */
