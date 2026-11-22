@@ -1,0 +1,85 @@
+{
+  "id": "sheet-S5",
+  "runId": "PLACEHOLDER",
+  "model": "Placeholder (real R3 output follows)",
+  "goal": "Get feedback on your revised question and the interview plan, and solve the recruiting problem.",
+  "sinceLastTime": {
+    "decided": [
+      "The topic stays",
+      "The research question gets narrowed",
+      "Interviews are the method"
+    ],
+    "carriedOver": ["How many interviews you need", "The ethics question"]
+  },
+  "agenda": [
+    {
+      "minutes": 5,
+      "topic": "Progress",
+      "goal": "Summarise what changed since the kick-off"
+    },
+    {
+      "minutes": 10,
+      "topic": "Interviews",
+      "goal": "Discuss guide, pilots and sample size"
+    },
+    {
+      "minutes": 8,
+      "topic": "Recruiting and consent",
+      "goal": "Solve the recruiting problem and consent wording"
+    },
+    {
+      "minutes": 5,
+      "topic": "Sources",
+      "goal": "Clarify how to cite company documents"
+    },
+    {
+      "minutes": 2,
+      "topic": "Next steps",
+      "goal": "Agree on the plan"
+    }
+  ],
+  "questions": [
+    {
+      "priority": "must",
+      "text": "Are six interviews enough, or what should I base that on?",
+      "fromNotes": "is 6 interviews enough?"
+    },
+    {
+      "priority": "must",
+      "text": "What could I do about recruiting only three confirmed participants?",
+      "fromNotes": "recruiting: only 3 people confirmed"
+    },
+    {
+      "priority": "should",
+      "text": "Can you look at my consent form wording?",
+      "fromNotes": "consent form wording unclear"
+    },
+    {
+      "priority": "should",
+      "text": "How should I cite company documents?",
+      "fromNotes": "how to cite company docs?"
+    },
+    {
+      "priority": "if-time",
+      "text": "Is recruiting through a professional network acceptable?",
+      "fromNotes": "recruit through LinkedIn?"
+    }
+  ],
+  "verifyFirst": [
+    {
+      "item": "Whether the interviews need formal ethics approval",
+      "whereToCheck": "Study office"
+    },
+    {
+      "item": "Which citation style is required",
+      "whereToCheck": "Your programme's regulations"
+    }
+  ],
+  "supervisorDecides": [
+    {
+      "decision": "The number of interviews",
+      "options": ["Stay at six", "Increase to eight", "Decide after the pilots"]
+    }
+  ],
+  "nextStep": "Bring the interview guide v1 and the consent form, and mark the two wordings you are unsure about."
+}

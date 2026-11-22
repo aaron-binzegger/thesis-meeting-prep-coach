@@ -1,0 +1,54 @@
+[
+  {
+    "kind": "kickoff",
+    "title": "Meeting 1: Kick-off",
+    "summary": "Turn first ideas and open questions into a clear agenda.",
+    "coachDoes": [
+      "Builds a short agenda for the time you have",
+      "Lists questions for your supervisor, most important first",
+      "Helps you find a direction if you have no topic yet",
+      "Lists what to verify first"
+    ]
+  },
+  {
+    "kind": "followup",
+    "title": "Meeting 2: Follow-up",
+    "summary": "Build on meeting 1 without reopening what was decided.",
+    "coachDoes": [
+      "Reuses your kick-off sheet and your after-meeting notes",
+      "Separates what was decided from what is still open",
+      "Focuses the agenda on the open points"
+    ]
+  },
+  {
+    "kind": "regular",
+    "title": "Regular meeting",
+    "summary": "Keep each progress meeting short and focused.",
+    "coachDoes": [
+      "Summarises progress since the last meeting",
+      "Prioritises your questions",
+      "Suggests one next step"
+    ]
+  },
+  {
+    "kind": "midterm",
+    "title": "Mid-term preparation",
+    "summary": "Take stock of the work halfway through.",
+    "coachDoes": [
+      "Helps you structure a progress overview",
+      "Collects open risks and questions",
+      "Lists what to verify with the right office"
+    ]
+  },
+  {
+    "kind": "presubmission",
+    "title": "Pre-submission",
+    "summary": "Get ready for the last feedback round before you hand in.",
+    "coachDoes": [
+      "Builds an agenda for the final feedback",
+      "Collects formal questions to check",
+      "Keeps the focus on the next steps"
+    ],
+    "exampleScenarioId": "X4"
+  }
+]

@@ -22,5 +22,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Dev-only `/styleguide` route with a sample prep sheet and every component.
 - Page for unknown routes.
 - Tests for colour contrast of all text tokens, priority badges, navigation behaviour and an axe-core accessibility check.
+- Data model (`src/types/prep-sheet.ts`) with typed data access in `src/data/index.ts`.
+- Placeholder data: four personas, scenarios S1–S6 and X4 with sheets, meeting types and prompt comparison, all marked `PLACEHOLDER`.
+- Data validation test: every JSON file matches the types, at most 6 questions, agenda fits the minutes, and no institutional facts in sheets.
 
 [Unreleased]: https://github.com/aaron-binzegger/thesis-meeting-prep-coach/commits/main

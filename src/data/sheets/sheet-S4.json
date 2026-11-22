@@ -1,0 +1,89 @@
+{
+  "id": "sheet-S4",
+  "runId": "PLACEHOLDER",
+  "model": "Placeholder (real R3 output follows)",
+  "goal": "Move towards a decision between your two ideas without reopening what was agreed in meeting 1.",
+  "sinceLastTime": {
+    "decided": ["Both ideas stay open for now", "Compare them on available literature and data"],
+    "carriedOver": ["Which idea to take", "How long the proposal should be"]
+  },
+  "agenda": [
+    {
+      "minutes": 5,
+      "topic": "Progress",
+      "goal": "Summarise what you read for each idea"
+    },
+    {
+      "minutes": 10,
+      "topic": "Comparison",
+      "goal": "Share what you found for both ideas"
+    },
+    {
+      "minutes": 8,
+      "topic": "Questionnaire",
+      "goal": "Get feedback on the draft survey"
+    },
+    {
+      "minutes": 5,
+      "topic": "Ethics and data",
+      "goal": "Clarify the open ethics question"
+    },
+    {
+      "minutes": 2,
+      "topic": "Next steps",
+      "goal": "Agree on the next step"
+    }
+  ],
+  "questions": [
+    {
+      "priority": "must",
+      "text": "Based on what I found for both ideas, what would help you see which one is feasible?",
+      "fromNotes": "A (stress) has way more material"
+    },
+    {
+      "priority": "must",
+      "text": "Is my draft questionnaire a sensible length?",
+      "fromNotes": "30 questions, too long?"
+    },
+    {
+      "priority": "should",
+      "text": "What do I need to think about for data protection in a survey?",
+      "fromNotes": "ask about data protection for the survey"
+    },
+    {
+      "priority": "should",
+      "text": "Where could I find sources on trust measures for idea B?",
+      "fromNotes": "cant find a good source for trust measures"
+    },
+    {
+      "priority": "if-time",
+      "text": "Can we look at how to plan around the time I lost?",
+      "fromNotes": "2 weeks lost bc of exams"
+    }
+  ],
+  "verifyFirst": [
+    {
+      "item": "How long the proposal should be",
+      "whereToCheck": "Your programme's regulations"
+    },
+    {
+      "item": "The answer on ethics from the study office",
+      "whereToCheck": "Study office"
+    },
+    {
+      "item": "What data protection rules apply to surveys",
+      "whereToCheck": "Study office"
+    }
+  ],
+  "supervisorDecides": [
+    {
+      "decision": "Which idea to take",
+      "options": ["Idea A: stress", "Idea B: trust", "Decide after one more reading round"]
+    },
+    {
+      "decision": "What to do about the questionnaire",
+      "options": ["Shorten it", "Keep it and pilot it", "Wait until the topic is fixed"]
+    }
+  ],
+  "nextStep": "Write one short paragraph per idea on what you found, and note which one you lean towards."
+}
