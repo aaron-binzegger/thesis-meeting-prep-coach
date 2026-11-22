@@ -34,3 +34,12 @@
   letter-spacing: -0.01em;
   line-height: 1.1;
 }
+
+/* On phones the name sets on two lines so the menu button fits beside it. */
+@media (max-width: 30rem) {
+  .name {
+    max-width: 7.5em;
+    line-height: 1.05;
+    text-wrap: balance;
+  }
+}

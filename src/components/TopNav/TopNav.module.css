@@ -8,7 +8,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-3) var(--space-5);
+  gap: var(--space-3);
   max-width: var(--page-max);
   margin-inline: auto;
   padding: var(--space-3) var(--gutter);
@@ -87,6 +87,7 @@
 
 @media (min-width: 60rem) {
   .bar {
+    column-gap: var(--space-5);
     flex-wrap: nowrap;
   }
 
