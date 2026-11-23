@@ -1,11 +1,12 @@
-import { CheckCircle2, Circle, Lock, NotebookPen } from 'lucide-react';
-import type { ReactNode } from 'react';
+import { CheckCircle2, ChevronDown, Circle, Lock, NotebookPen } from 'lucide-react';
+import { useId, useState, type ReactNode } from 'react';
 import { ButtonLink } from '../../components/Button/Button.tsx';
 import { Card } from '../../components/Card/Card.tsx';
-import { getMeetingType } from '../../data/index.ts';
+import { PrepSheetView } from '../../components/PrepSheet/PrepSheetView.tsx';
+import { getMeetingType, getScenario, getSheet } from '../../data/index.ts';
 import type { MeetingStatus } from '../../state/session.ts';
 import { useSession } from '../../state/useSession.ts';
-import type { MeetingKind } from '../../types/prep-sheet.ts';
+import type { MeetingKind, MeetingType } from '../../types/prep-sheet.ts';
 import styles from './Journey.module.css';
 
 const statusLabels: Record<MeetingStatus, string> = {
@@ -33,7 +34,64 @@ function StatusLabel({ children, icon }: { children: ReactNode; icon: ReactNode 
   );
 }
 
+function AlsoAvailable({
+  type,
+  open,
+  onToggle,
+}: {
+  type: MeetingType;
+  open: boolean;
+  onToggle: () => void;
+}) {
+  const panelId = useId();
+  const [showSheet, setShowSheet] = useState(false);
+  const scenario = getScenario(type.exampleScenarioId);
+  const sheet = getSheet(scenario?.sheetId);
+
+  return (
+    <article className={styles.minor}>
+      <h2>
+        <button
+          type="button"
+          className={styles.minorButton}
+          aria-expanded={open}
+          aria-controls={panelId}
+          onClick={onToggle}
+        >
+          <span>{type.title}</span>
+          <ChevronDown size={18} aria-hidden="true" className={styles.chevron} />
+        </button>
+      </h2>
+      <p>{type.summary}</p>
+      <p className={styles.badge}>Also available</p>
+      <div id={panelId} className={styles.panel} hidden={!open}>
+        <h3>What the coach does</h3>
+        <ul>
+          {type.coachDoes.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+        <p>This prototype focuses on meetings 1 and 2.</p>
+        {scenario && sheet && (
+          <details
+            className={styles.example}
+            onToggle={(event) => setShowSheet(event.currentTarget.open)}
+          >
+            <summary>Show example sheet</summary>
+            {showSheet && (
+              <div className={styles.exampleSheet}>
+                <PrepSheetView sheet={sheet} scenario={scenario} meetingTitle={type.title} />
+              </div>
+            )}
+          </details>
+        )}
+      </div>
+    </article>
+  );
+}
+
 export default function Journey() {
+  const [openKind, setOpenKind] = useState<MeetingKind | undefined>();
   const { session, status, meeting2Unlocked } = useSession();
   const kickoff = getMeetingType('kickoff');
   const followup = getMeetingType('followup');
@@ -105,11 +163,11 @@ export default function Journey() {
           if (!type) return null;
           return (
             <li key={kind} className={styles.step}>
-              <article className={styles.minor}>
-                <h2>{type.title}</h2>
-                <p>{type.summary}</p>
-                <p className={styles.badge}>Also available</p>
-              </article>
+              <AlsoAvailable
+                type={type}
+                open={openKind === kind}
+                onToggle={() => setOpenKind(openKind === kind ? undefined : kind)}
+              />
             </li>
           );
         })}

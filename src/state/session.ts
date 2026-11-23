@@ -39,6 +39,8 @@ export type MeetingStatus = 'not-prepared' | 'prepared' | 'notes-added';
 
 export interface Session {
   demoMode: boolean;
+  /** Show the plain-AI baseline next to the coach sheet (spec 6.8). */
+  compareMode: boolean;
   personaId: PersonaId | undefined;
   meeting1: MeetingOne;
   meeting2: MeetingTwo;
@@ -47,6 +49,7 @@ export interface Session {
 export interface SessionApi {
   session: Session;
   setDemoMode: (on: boolean) => void;
+  setCompareMode: (on: boolean) => void;
   /** Selects a demo persona and pre-fills all forms; `undefined` clears the persona. */
   selectPersona: (id: PersonaId | undefined) => void;
   updateMeeting1: (patch: Partial<Omit<MeetingOne, 'prepared' | 'after'>>) => void;
@@ -66,6 +69,7 @@ export const emptyAfter: AfterMeetingNotes = { decided: '', open: '', next: '' }
 
 export const initialSession: Session = {
   demoMode: false,
+  compareMode: false,
   personaId: undefined,
   meeting1: {
     minutes: DEFAULT_MINUTES,
@@ -110,6 +114,7 @@ export function sessionForPersona(id: PersonaId, demoMode: boolean): Session {
   const followup = getScenario(persona?.followupScenarioId);
   return {
     demoMode,
+    compareMode: false,
     personaId: id,
     meeting1: {
       minutes: kickoff?.minutes ?? DEFAULT_MINUTES,

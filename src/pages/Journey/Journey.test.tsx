@@ -1,4 +1,5 @@
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 import { renderWithRouter } from '../../test/renderWithRouter.tsx';
 import Journey from './Journey.tsx';
@@ -33,6 +34,30 @@ describe('Journey', () => {
     renderWithRouter(<Journey />, { route: '/journey' });
     expect(screen.getAllByText('Also available')).toHaveLength(3);
     expect(screen.getByRole('heading', { name: 'Regular meeting' })).toBeInTheDocument();
-    expect(screen.getByText(/focuses on meetings 1 and 2/)).toBeInTheDocument();
+    expect(screen.getByText(/The other meetings are shown for context/)).toBeInTheDocument();
+  });
+
+  it('opens an also-available panel with what the coach does', async () => {
+    const user = userEvent.setup();
+    renderWithRouter(<Journey />, { route: '/journey' });
+    const button = screen.getByRole('button', { name: 'Regular meeting' });
+    expect(button).toHaveAttribute('aria-expanded', 'false');
+    await user.click(button);
+    expect(button).toHaveAttribute('aria-expanded', 'true');
+    expect(screen.getByText('Suggests one next step')).toBeVisible();
+    expect(screen.getAllByText('This prototype focuses on meetings 1 and 2.')).toHaveLength(3);
+    expect(screen.getAllByText('This prototype focuses on meetings 1 and 2.')[2]).not.toBeVisible();
+    expect(screen.getAllByRole('heading', { name: 'What the coach does' })).toHaveLength(1);
+    // One panel at a time.
+    await user.click(screen.getByRole('button', { name: 'Pre-submission' }));
+    expect(button).toHaveAttribute('aria-expanded', 'false');
+  });
+
+  it('offers the X4 example sheet for pre-submission', async () => {
+    const user = userEvent.setup();
+    renderWithRouter(<Journey />, { route: '/journey' });
+    await user.click(screen.getByRole('button', { name: 'Pre-submission' }));
+    await user.click(screen.getByText('Show example sheet'));
+    expect(screen.getByRole('article', { name: 'Prep sheet' })).toBeInTheDocument();
   });
 });

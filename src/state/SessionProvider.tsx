@@ -22,9 +22,15 @@ export function SessionProvider({ children }: { children: ReactNode }) {
     setSession((s) => (on ? { ...s, demoMode: true } : { ...initialSession }));
   }, []);
 
+  const setCompareMode = useCallback((on: boolean) => {
+    setSession((s) => ({ ...s, compareMode: on }));
+  }, []);
+
   const selectPersona = useCallback((id: PersonaId | undefined) => {
     setSession((s) =>
-      id ? sessionForPersona(id, s.demoMode) : { ...initialSession, demoMode: s.demoMode },
+      id
+        ? { ...sessionForPersona(id, s.demoMode), compareMode: s.compareMode }
+        : { ...initialSession, demoMode: s.demoMode },
     );
   }, []);
 
@@ -72,6 +78,7 @@ export function SessionProvider({ children }: { children: ReactNode }) {
     return {
       session,
       setDemoMode,
+      setCompareMode,
       selectPersona,
       updateMeeting1,
       updateAfterNotes,
@@ -84,6 +91,7 @@ export function SessionProvider({ children }: { children: ReactNode }) {
   }, [
     session,
     setDemoMode,
+    setCompareMode,
     selectPersona,
     updateMeeting1,
     updateAfterNotes,
