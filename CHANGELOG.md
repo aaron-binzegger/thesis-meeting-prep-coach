@@ -35,4 +35,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - How it works page: workflow diagram, what the coach never does, prompt iterations and key results, privacy and limitations.
 - Use it in your own AI page: copy-paste prompt and a downloadable `SKILL.md` (placeholders until the final prompt is in).
 
+### Changed
+
+- The layout scales with the screen: 16 px base up to laptop width, growing to 20 px on large monitors and projectors.
+- Calmer prep sheet: two typefaces, four text sizes, the margin column holds labels and notes, colour only on priority icons and the "Verify first" highlighter.
+- On wide screens the sheet actions sit in a sticky rail next to the sheet.
+
 [Unreleased]: https://github.com/aaron-binzegger/thesis-meeting-prep-coach/commits/main

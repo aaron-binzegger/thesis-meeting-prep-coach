@@ -2,20 +2,21 @@
   display: inline-flex;
   align-items: center;
   gap: 0.4em;
-  font-weight: 700;
+  color: var(--ink);
+  font-weight: 650;
   line-height: 1.2;
   white-space: nowrap;
 }
 
-.badge[data-priority='must'] {
+.badge[data-priority='must'] .icon {
   color: var(--must);
 }
 
-.badge[data-priority='should'] {
+.badge[data-priority='should'] .icon {
   color: var(--should);
 }
 
-.badge[data-priority='if-time'] {
+.badge[data-priority='if-time'] .icon {
   color: var(--iftime);
 }
 
