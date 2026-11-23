@@ -7,7 +7,7 @@ describe('App', () => {
   it('renders the app name on the start page', () => {
     renderWithRouter(<App />);
     expect(
-      screen.getByRole('heading', { level: 1, name: 'Thesis Meeting Prep Coach' }),
+      screen.getByRole('heading', { level: 1, name: /Walk into your thesis meeting prepared/ }),
     ).toBeInTheDocument();
   });
 

@@ -25,5 +25,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Data model (`src/types/prep-sheet.ts`) with typed data access in `src/data/index.ts`.
 - Placeholder data: four personas, scenarios S1–S6 and X4 with sheets, meeting types and prompt comparison, all marked `PLACEHOLDER`.
 - Data validation test: every JSON file matches the types, at most 6 questions, agenda fits the minutes, and no institutional facts in sheets.
+- Core flow: Welcome, Journey, Meeting 1 setup, Prep sheet, After the meeting, Meeting 2 setup and sheet, with in-memory session state (no browser storage).
+- Prep sheet with agenda table and time bar, grouped questions with notes in the margin, Verify first, supervisor decisions, next step, copy as text and print to one A4 page.
+- Example banner when typed notes are answered with a similar student's sheet, and a placeholder badge for placeholder data.
+- Axe checks on every core-flow screen.
 
 [Unreleased]: https://github.com/aaron-binzegger/thesis-meeting-prep-coach/commits/main
