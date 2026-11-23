@@ -66,8 +66,8 @@
   --radius-pill: 999px;
 
   /* Layout */
-  --page-max: 72rem;
-  --sheet-max: 52rem;
+  --page-max: 80rem;
+  --sheet-max: 56rem;
   --margin-col: 10.5rem;
   --gutter: clamp(1rem, 4vw, 2.5rem);
   --control-min: 2.75rem;

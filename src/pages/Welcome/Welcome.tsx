@@ -50,11 +50,9 @@ function SheetFragment() {
             </SheetSection>
           )}
           {verify && (
-            <SheetSection heading="Verify first">
+            <SheetSection heading={<Highlight>Verify first</Highlight>}>
               <SheetRow note={<p className={styles.meta}>{verify.whereToCheck}</p>}>
-                <p>
-                  <Highlight>{verify.item}</Highlight>
-                </p>
+                <p>{verify.item}</p>
               </SheetRow>
             </SheetSection>
           )}

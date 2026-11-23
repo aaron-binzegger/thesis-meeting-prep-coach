@@ -58,13 +58,19 @@ export default function PrepSheetPage() {
   const sheetView = <PrepSheetView sheet={sheet} scenario={scenario} meetingTitle={meetingTitle} />;
 
   return (
-    <div className={styles.page}>
+    <div className={session.compareMode ? styles.page : `${styles.page} ${styles.withRail}`}>
       <div className={styles.banners} data-print="hide">
         {prepared.isExample && <Callout tone="prototype">{EXAMPLE_BANNER}</Callout>}
         {sheet.privacyWarning && <Callout tone="privacy">{sheet.privacyWarning}</Callout>}
       </div>
 
-      {session.compareMode ? <CompareView scenario={scenario}>{sheetView}</CompareView> : sheetView}
+      <div className={styles.sheet}>
+        {session.compareMode ? (
+          <CompareView scenario={scenario}>{sheetView}</CompareView>
+        ) : (
+          sheetView
+        )}
+      </div>
 
       <div className={styles.actions} data-print="hide">
         <Button variant="secondary" icon={<ClipboardCopy />} onClick={copy}>

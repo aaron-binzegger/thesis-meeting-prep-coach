@@ -9,7 +9,12 @@
   margin: 0;
 }
 
+/*
+ * Fluid root size: everything is set in rem, so the whole layout scales with the screen.
+ * 16px up to ~1340px wide, then grows to 20px on large monitors (~2650px).
+ */
 html {
+  font-size: clamp(100%, 0.6rem + 0.45vw, 125%);
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
