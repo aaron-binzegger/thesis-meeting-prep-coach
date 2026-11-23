@@ -1,0 +1,88 @@
+{
+  "id": "sheet-S1",
+  "runId": "PLACEHOLDER",
+  "model": "Placeholder (real R3 output follows)",
+  "goal": "Leave the meeting knowing how to choose between your two topic ideas, and what your proposal needs.",
+  "agenda": [
+    {
+      "minutes": 5,
+      "topic": "Your two ideas",
+      "goal": "Present both ideas in two sentences each"
+    },
+    {
+      "minutes": 10,
+      "topic": "Comparing the ideas",
+      "goal": "Hear which questions help you decide, without being told the answer"
+    },
+    {
+      "minutes": 8,
+      "topic": "Method and sources",
+      "goal": "Check what each idea would need"
+    },
+    {
+      "minutes": 5,
+      "topic": "Proposal and next steps",
+      "goal": "Clarify what to write next"
+    }
+  ],
+  "questions": [
+    {
+      "priority": "must",
+      "text": "What would you look at to decide between an idea on social media and study stress and one on remote work and team trust?",
+      "fromNotes": "A feels easier but B more interesting"
+    },
+    {
+      "priority": "must",
+      "text": "Can I still change the topic after the proposal?",
+      "fromNotes": "maybe ask if topic can change later"
+    },
+    {
+      "priority": "should",
+      "text": "What should the proposal contain, and who reads it?",
+      "fromNotes": "need to ask about the proposal"
+    },
+    {
+      "priority": "should",
+      "text": "Which methods suit each idea, and how do I judge whether I can manage them?",
+      "fromNotes": "method - not sure, quant or qual"
+    },
+    {
+      "priority": "if-time",
+      "text": "Who will be the second reader, and what role do they play?",
+      "fromNotes": "who is 2nd reader??"
+    }
+  ],
+  "verifyFirst": [
+    {
+      "item": "How long the proposal should be",
+      "whereToCheck": "Your programme's regulations"
+    },
+    {
+      "item": "Who the second reader is",
+      "whereToCheck": "Your supervisor"
+    },
+    {
+      "item": "Whether the topic can be changed later",
+      "whereToCheck": "Study office"
+    }
+  ],
+  "supervisorDecides": [
+    {
+      "decision": "Which of the two ideas to pursue",
+      "options": [
+        "Idea A: social media use and study stress",
+        "Idea B: remote work and team trust",
+        "Keep both open for one more week"
+      ]
+    },
+    {
+      "decision": "Which method direction to explore first",
+      "options": [
+        "A survey (quantitative)",
+        "Interviews (qualitative)",
+        "Decide after more reading"
+      ]
+    }
+  ],
+  "nextStep": "Write two sentences for each idea: what you would ask, and what you have already found."
+}

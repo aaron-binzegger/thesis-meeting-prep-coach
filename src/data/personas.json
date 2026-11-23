@@ -1,0 +1,32 @@
+[
+  {
+    "id": "mia",
+    "name": "Mia",
+    "tagline": "Torn between two ideas",
+    "startingPoint": "Mia has two possible topics and a pile of chaotic notes, and does not know how to bring both to her supervisor.",
+    "kickoffScenarioId": "S1",
+    "followupScenarioId": "S4"
+  },
+  {
+    "id": "luca",
+    "name": "Luca",
+    "tagline": "No idea yet",
+    "startingPoint": "Luca has no topic at all and is unsure what a thesis even involves.",
+    "kickoffScenarioId": "S2"
+  },
+  {
+    "id": "sara",
+    "name": "Sara",
+    "tagline": "Bilingual and blocked",
+    "startingPoint": "Sara writes notes in German and English and is stuck because she cannot get access to the data she needs.",
+    "followupScenarioId": "S6"
+  },
+  {
+    "id": "jonas",
+    "name": "Jonas",
+    "tagline": "The organised planner",
+    "startingPoint": "Jonas arrives with structured notes and a clear topic and wants to use the meeting time well.",
+    "kickoffScenarioId": "S3",
+    "followupScenarioId": "S5"
+  }
+]
