@@ -1,4 +1,5 @@
 import { screen, within } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 import { renderWithRouter } from '../../test/renderWithRouter.tsx';
 import HowItWorks from './HowItWorks.tsx';
@@ -42,5 +43,23 @@ describe('HowItWorks', () => {
       'href',
       'https://github.com/aaron-binzegger/thesis-meeting-prep-coach',
     );
+  });
+
+  it('shows the real clarifying example (R3-X1) from the "too thin" branch', async () => {
+    const user = userEvent.setup();
+    renderWithRouter(<HowItWorks />);
+    await user.click(screen.getByText('See an example with very thin notes'));
+    // The sheet renders on the <details> toggle event, which jsdom fires asynchronously.
+    expect(
+      await screen.findByText(
+        'Your notes are a bit thin. Answer these first.',
+        {},
+        { timeout: 5000 },
+      ),
+    ).toBeInTheDocument();
+    expect(screen.getByText('kickoff tmrw. no idea. help')).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Use example answers' }));
+    expect(screen.getByRole('heading', { name: 'Agenda' })).toBeInTheDocument();
+    expect(screen.getByText(/Source run R3-X1/)).toBeInTheDocument();
   });
 });

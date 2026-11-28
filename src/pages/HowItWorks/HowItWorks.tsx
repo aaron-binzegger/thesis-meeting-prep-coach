@@ -1,11 +1,44 @@
+import { useState } from 'react';
 import { Callout } from '../../components/Callout/Callout.tsx';
-import { comparison } from '../../data/index.ts';
+import { PrepSheetView } from '../../components/PrepSheet/PrepSheetView.tsx';
+import {
+  comparison,
+  fallbacks,
+  getMeetingType,
+  getReadyScenario,
+  getSheet,
+} from '../../data/index.ts';
 import styles from './HowItWorks.module.css';
 
 const REPO_URL = 'https://github.com/aaron-binzegger/thesis-meeting-prep-coach';
 
 const PROTOTYPE_NOTE =
   'Prototype: the sheets shown are real outputs of our final prompt, generated in our test runs. The prototype itself does not call an AI.';
+
+/** The real clarifying-questions output (R3-X1), opened from the "too thin" branch. */
+function ClarifyingExample() {
+  const [open, setOpen] = useState(false);
+  const scenario = getReadyScenario(fallbacks.thinNotes.scenarioId);
+  const sheet = getSheet(scenario?.sheetId);
+  if (!scenario || !sheet) return null;
+  return (
+    <details className={styles.example} onToggle={(event) => setOpen(event.currentTarget.open)}>
+      <summary>See an example with very thin notes</summary>
+      {open && (
+        <div className={styles.exampleBody}>
+          <p>
+            The notes were: <q>{scenario.notes}</q>
+          </p>
+          <PrepSheetView
+            sheet={sheet}
+            scenario={scenario}
+            meetingTitle={getMeetingType(scenario.meeting)?.title ?? 'Kick-off'}
+          />
+        </div>
+      )}
+    </details>
+  );
+}
 
 export default function HowItWorks() {
   return (
@@ -52,6 +85,7 @@ export default function HowItWorks() {
             <span className={styles.stepText}>You and your supervisor check the sheet</span>
           </li>
         </ol>
+        <ClarifyingExample />
       </section>
 
       <section aria-labelledby="never-heading" className={styles.section}>
