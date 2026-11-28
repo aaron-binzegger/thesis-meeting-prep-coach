@@ -3,7 +3,7 @@
  * so new real outputs can be added as files without UI changes.
  */
 import type {
-  Comparison,
+  Evaluation,
   Fallbacks,
   MeetingKind,
   MeetingType,
@@ -13,7 +13,7 @@ import type {
   Scenario,
   TopicIdea,
 } from '../types/prep-sheet.ts';
-import comparisonJson from './comparison.json';
+import evaluationJson from './evaluation.json';
 import fallbacksJson from './fallbacks.json';
 import meetingTypesJson from './meeting-types.json';
 import personasJson from './personas.json';
@@ -27,7 +27,7 @@ const sheetModules = import.meta.glob<PrepSheet>('./sheets/*.json', {
 export const personas = personasJson as Persona[];
 export const scenarios = scenariosJson as Scenario[];
 export const meetingTypes = meetingTypesJson as MeetingType[];
-export const comparison = comparisonJson as Comparison;
+export const evaluation = evaluationJson as Evaluation;
 export const fallbacks = fallbacksJson as Fallbacks;
 export const sheets: PrepSheet[] = Object.values(sheetModules);
 

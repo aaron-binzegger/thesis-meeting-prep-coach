@@ -9,7 +9,8 @@ describe('UseIt', () => {
   it('has one h1, the tested models and the privacy reminder', () => {
     renderWithRouter(<UseIt />);
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Use it in your own AI');
-    expect(screen.getAllByText('ChatGPT')[0]).toBeInTheDocument();
+    expect(screen.getByText(/Portability runs used free ChatGPT and Gemini/)).toBeInTheDocument();
+    expect(screen.getByText('4 / 7 (stress 3 / 3, ChatGPT/Gemini 3 / 4)')).toBeInTheDocument();
     expect(
       screen.getByText('Don’t enter real names, grades or confidential company data.'),
     ).toBeInTheDocument();

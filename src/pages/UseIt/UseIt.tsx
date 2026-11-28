@@ -3,7 +3,7 @@ import { useRef, useState, type KeyboardEvent } from 'react';
 import { Button } from '../../components/Button/Button.tsx';
 import { Callout } from '../../components/Callout/Callout.tsx';
 import prompt from '../../data/coach-prompt.md?raw';
-import { comparison } from '../../data/index.ts';
+import { evaluation } from '../../data/index.ts';
 import styles from './UseIt.module.css';
 
 const TABS = [
@@ -66,15 +66,11 @@ export default function UseIt() {
 
       <section aria-labelledby="tested-heading" className={styles.section}>
         <h2 id="tested-heading">Where we tested it</h2>
-        <ul className={styles.models}>
-          {comparison.models.map((m) => (
-            <li key={m.name}>
-              <strong>{m.name}</strong>
-              <span>{m.tested}</span>
-              <span className={styles.muted}>{m.result}</span>
-            </li>
-          ))}
-        </ul>
+        <p>{evaluation.setup[0]}</p>
+        <p>
+          Final prompt (R3.1), runs that passed every hard criterion:{' '}
+          <strong>{evaluation.versions.find((v) => v.id === 'R3.1')?.hardPasses}</strong>
+        </p>
       </section>
 
       <Callout tone="privacy" className={styles.callout}>

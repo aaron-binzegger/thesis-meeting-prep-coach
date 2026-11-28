@@ -94,59 +94,84 @@
   padding-left: var(--space-5);
 }
 
-.placeholder {
-  padding: var(--space-2) var(--space-3);
-  border-left: 3px solid var(--margin-red);
-  background: var(--tint);
-}
-
-.iterations {
-  display: grid;
-  gap: var(--space-4);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.iterations li {
-  display: grid;
-  gap: var(--space-1);
-  padding-left: var(--space-4);
-  border-left: 2px solid var(--ruling);
-}
-
-.result {
-  color: var(--ink-muted);
-}
-
-.results {
-  display: grid;
-  gap: var(--space-3);
+.tableWrap {
   width: 100%;
-  margin: 0;
 }
 
-.resultRow {
-  display: grid;
-  gap: var(--space-1);
-  padding-bottom: var(--space-3);
-  border-bottom: 1px solid var(--ruling);
+.table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.resultRow dt {
+.caption {
+  margin-bottom: var(--space-2);
   color: var(--ink-muted);
+  font-size: var(--step--1);
+  font-weight: 600;
+  text-align: left;
 }
 
-.resultRow dd {
-  margin: 0;
+.table th,
+.table td {
+  padding: var(--space-2) var(--space-4) var(--space-2) 0;
+  border-bottom: 1px solid var(--ruling);
+  font-weight: 400;
+  text-align: left;
+  vertical-align: top;
+}
+
+.table thead th {
+  color: var(--ink-muted);
+  font-size: var(--step--1);
   font-weight: 600;
 }
 
-@media (min-width: 40rem) {
-  .resultRow {
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-4);
-  }
+.table tbody th {
+  font-weight: 600;
+}
+
+.notes {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: var(--space-1) var(--space-4);
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: var(--step--1);
+}
+
+.notes dt {
+  font-weight: 600;
+}
+
+.notes dd {
+  margin: 0;
+}
+
+.list {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding-left: var(--space-5);
+}
+
+.list .list {
+  margin-top: var(--space-2);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+}
+
+.soon {
+  justify-self: start;
+  margin: 0;
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--ink-muted);
+  border-radius: var(--radius-pill);
+  font-size: var(--step--1);
+  font-weight: 600;
 }
 
 .example {

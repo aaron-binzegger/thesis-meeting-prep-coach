@@ -13,6 +13,7 @@ describe('HowItWorks', () => {
       'The workflow',
       'What the coach will never do',
       'How we built and tested it',
+      'Peer test',
       'Privacy and human oversight',
       'Prototype limitations and AI use',
     ]) {
@@ -36,13 +37,26 @@ describe('HowItWorks', () => {
     expect(within(section).getAllByRole('listitem')).toHaveLength(3);
   });
 
-  it('shows the placeholder note and the repo link', () => {
+  it('shows the evaluation from docs/evaluation.md and links to it', () => {
     renderWithRouter(<HowItWorks />);
-    expect(screen.getByText('Placeholder results. The real evaluation follows.')).toBeVisible();
-    expect(screen.getByRole('link', { name: /GitHub/ })).toHaveAttribute(
+    const table = screen.getByRole('table', { name: 'Prompt versions and test results' });
+    expect(within(table).getAllByRole('row')).toHaveLength(6);
+    expect(within(table).getByRole('rowheader', { name: 'R3.1 Final' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Where it does not work' })).toBeInTheDocument();
+    expect(screen.queryByText(/placeholder/i)).not.toBeInTheDocument();
+    expect(
+      screen.getByRole('link', { name: 'Read the full evaluation on GitHub' }),
+    ).toHaveAttribute(
       'href',
-      'https://github.com/aaron-binzegger/thesis-meeting-prep-coach',
+      'https://github.com/aaron-binzegger/thesis-meeting-prep-coach/blob/main/docs/evaluation.md',
     );
+  });
+
+  it('marks the peer test as coming soon without results', () => {
+    renderWithRouter(<HowItWorks />);
+    const section = screen.getByRole('heading', { name: 'Peer test' }).closest('section')!;
+    expect(within(section).getByText('Results coming soon')).toBeVisible();
+    expect(within(section).getByText(/To be added: blind A\/B comparison/)).toBeInTheDocument();
   });
 
   it('shows the real clarifying example (R3-X1) from the "too thin" branch', async () => {

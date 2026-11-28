@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Callout } from '../../components/Callout/Callout.tsx';
 import { PrepSheetView } from '../../components/PrepSheet/PrepSheetView.tsx';
 import {
-  comparison,
+  evaluation,
   fallbacks,
   getMeetingType,
   getReadyScenario,
@@ -11,6 +11,9 @@ import {
 import styles from './HowItWorks.module.css';
 
 const REPO_URL = 'https://github.com/aaron-binzegger/thesis-meeting-prep-coach';
+const EVALUATION_URL = `${REPO_URL}/blob/main/docs/evaluation.md`;
+const PROMPTS_URL = `${REPO_URL}/tree/main/docs/prompts`;
+const DISCLOSURE_URL = `${REPO_URL}/blob/main/docs/ai-use-disclosure.md`;
 
 const PROTOTYPE_NOTE =
   'Prototype: the sheets shown are real outputs of our final prompt, generated in our test runs. The prototype itself does not call an AI.';
@@ -103,30 +106,86 @@ export default function HowItWorks() {
 
       <section aria-labelledby="built-heading" className={styles.section}>
         <h2 id="built-heading">How we built and tested it</h2>
-        {comparison.status === 'placeholder' && (
-          <p className={styles.placeholder}>Placeholder results. The real evaluation follows.</p>
-        )}
-        <ol className={styles.iterations}>
-          {comparison.iterations.map((it) => (
-            <li key={it.id}>
-              <strong>{it.name}</strong>
-              <span>{it.change}</span>
-              <span className={styles.result}>{it.keyResult}</span>
+        <p>
+          We started with a plain prompt and improved it in four steps. Every version ran on the
+          same fictional notes.
+        </p>
+        <div className={styles.tableWrap}>
+          <table className={styles.table}>
+            <caption className={styles.caption}>Prompt versions and test results</caption>
+            <thead>
+              <tr>
+                <th scope="col">Version</th>
+                <th scope="col">Idea</th>
+                <th scope="col">Hard passes</th>
+                <th scope="col">Soft avg</th>
+              </tr>
+            </thead>
+            <tbody>
+              {evaluation.versions.map((v) => (
+                <tr key={v.id}>
+                  <th scope="row">{v.name}</th>
+                  <td>{v.idea}</td>
+                  <td>{v.hardPasses}</td>
+                  <td>{v.softAvg}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <dl className={styles.notes}>
+          <dt>Hard passes</dt>
+          <dd>{evaluation.setup[2]}</dd>
+          <dt>Soft avg</dt>
+          <dd>{evaluation.setup[3]}</dd>
+          <dt>Model</dt>
+          <dd>{evaluation.setup[0]}</dd>
+          <dt>Scoring</dt>
+          <dd>{evaluation.setup[4]}</dd>
+        </dl>
+
+        <h3>What the plain prompt did</h3>
+        <ul className={styles.list}>
+          {evaluation.baselineDoes.map((text) => (
+            <li key={text}>{text}</li>
+          ))}
+        </ul>
+
+        <h3>Final coach (R3.1)</h3>
+        <ul className={styles.list}>
+          {evaluation.findings.map((text) => (
+            <li key={text}>{text}</li>
+          ))}
+        </ul>
+
+        <h3>Where it does not work</h3>
+        <ul className={styles.list}>
+          {evaluation.limitations.map((l, index) => (
+            <li key={l.title}>
+              <strong>{l.title}</strong> {l.text}
+              {index === 1 && (
+                <ul className={styles.list}>
+                  {evaluation.gains.map((text) => (
+                    <li key={text}>{text}</li>
+                  ))}
+                </ul>
+              )}
             </li>
           ))}
-        </ol>
-        <h3>Key results</h3>
-        <dl className={styles.results}>
-          {comparison.keyResults.map((r) => (
-            <div key={r.label} className={styles.resultRow}>
-              <dt>{r.label}</dt>
-              <dd>{r.value}</dd>
-            </div>
-          ))}
-        </dl>
-        <p>
-          <a href={REPO_URL}>See the code and the test runs on GitHub</a>
+        </ul>
+
+        <p className={styles.links}>
+          <a href={EVALUATION_URL}>Read the full evaluation on GitHub</a>
+          <a href={PROMPTS_URL}>See every prompt version</a>
         </p>
+      </section>
+
+      <section aria-labelledby="peer-heading" className={styles.section}>
+        <h2 id="peer-heading">Peer test</h2>
+        {evaluation.peerTest.status === 'coming-soon' && (
+          <p className={styles.soon}>Results coming soon</p>
+        )}
+        <p>{evaluation.peerTest.note}</p>
       </section>
 
       <section aria-labelledby="privacy-heading" className={styles.section}>
@@ -148,7 +207,8 @@ export default function HowItWorks() {
         </Callout>
         <p>
           The outputs are pre-generated and the students are fictional. Nothing here is official
-          university advice. The app code was written with Claude Code.
+          university advice. The app code was written with Claude Code.{' '}
+          <a href={DISCLOSURE_URL}>Read how we used AI</a>
         </p>
       </section>
     </div>

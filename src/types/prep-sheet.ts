@@ -125,22 +125,26 @@ export interface MeetingType {
   exampleScenarioId?: string;
 }
 
-/** Prompt iterations and evaluation results (How it works, Use it in your own AI). */
-export interface Comparison {
-  /** 'placeholder' until the real evaluation numbers replace this file. */
-  status: 'placeholder' | 'final';
-  iterations: {
-    id: 'baseline' | 'R1' | 'R2' | 'R3';
+/**
+ * Evaluation summary for How it works and Use it in your own AI. Every text is copied from
+ * docs/evaluation.md (markdown emphasis removed); the data test checks this.
+ */
+export interface Evaluation {
+  source: string;
+  setup: string[];
+  versions: {
+    id: 'baseline' | 'R1' | 'R2' | 'R3' | 'R3.1';
     name: string;
-    change: string;
-    keyResult: string;
+    idea: string;
+    hardPasses: string;
+    softAvg: string;
   }[];
-  models: {
-    name: string;
-    tested: string;
-    result: string;
-  }[];
-  keyResults: { label: string; value: string }[];
+  findings: string[];
+  baselineDoes: string[];
+  limitations: { title: string; text: string }[];
+  gains: string[];
+  /** The peer test is still running: no results until docs/evaluation.md has them. */
+  peerTest: { status: 'coming-soon' | 'done'; note: string };
 }
 
 /**
