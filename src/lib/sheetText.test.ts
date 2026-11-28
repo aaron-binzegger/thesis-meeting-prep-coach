@@ -20,7 +20,8 @@ describe('sheetToText', () => {
     ]) {
       expect(text).toContain(heading);
     }
-    expect(text).toContain(sheet.goal);
+    expect(text).toContain('Before I can help');
+    expect(text).toContain(sheet.questions[0]!.fromNotes);
     expect(text).toContain('[Must]');
     expect(text).toContain('From your notes:');
     expect(text).toContain('(check: ');
@@ -30,7 +31,17 @@ describe('sheetToText', () => {
   });
 
   it('includes since last time for follow-ups only', () => {
-    expect(textFor('S4').text).toContain("Decided in meeting 1 (don't reopen):");
+    expect(textFor('S6').text).toContain("Decided in meeting 1 (don't reopen):");
     expect(textFor('S1').text).not.toContain('Since last time');
+  });
+
+  it('keeps the verbatim agenda times and the clarifying turn', () => {
+    expect(textFor('S1').text).toContain('- 0–5 (5 min): Opening and context');
+    const x1 = textFor('X1').text;
+    expect(x1).toContain('Your notes are a bit thin. Answer these first.');
+    expect(x1).toContain('Example answers');
+    expect(x1).toContain('Here are my answers:');
+    expect(x1).toContain('What I bring');
+    expect(x1).not.toContain('Goal:');
   });
 });

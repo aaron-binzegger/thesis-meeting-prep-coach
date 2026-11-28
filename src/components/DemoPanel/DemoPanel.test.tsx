@@ -55,8 +55,9 @@ describe('DemoPanel', () => {
 
   it('shows who covers which meetings', async () => {
     await openPanel();
-    expect(screen.getAllByText('Kick-off and follow-up').length).toBeGreaterThan(0);
-    expect(screen.getByText('Follow-up only')).toBeInTheDocument();
+    // Meetings without a real coach output yet (S3, S4b) are hidden.
+    expect(screen.getAllByText('Kick-off only').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('Follow-up only').length).toBeGreaterThan(0);
   });
 
   it('toggles the compare switch', async () => {

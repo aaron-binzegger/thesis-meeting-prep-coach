@@ -36,6 +36,11 @@ describe('meeting setup screens', () => {
     expect(
       screen.queryByRole('heading', { name: 'Prepare your kick-off meeting' }),
     ).not.toBeInTheDocument();
+    // Typed notes under 15 words: the clarifying example (R3-X1), marked as an example.
+    expect(
+      await screen.findByText('Your notes are a bit thin. Answer these first.'),
+    ).toBeInTheDocument();
+    expect(screen.getByText(/this is an example output for a similar student/)).toBeVisible();
   });
 
   it('locks meeting 2 by default', () => {

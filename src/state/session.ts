@@ -4,7 +4,12 @@
  * the active demo persona and which scenario's sheet is shown.
  */
 import { createContext } from 'react';
-import { fallbackScenarioId, getPersona, getScenario } from '../data/index.ts';
+import {
+  fallbackScenarioId,
+  getPersona,
+  getReadyScenario,
+  personaScenarioId,
+} from '../data/index.ts';
 import type { PersonaId, TopicIdea } from '../types/prep-sheet.ts';
 
 export type MeetingNumber = 1 | 2;
@@ -110,8 +115,9 @@ export function hasAfterNotes(after: AfterMeetingNotes): boolean {
 /** Builds the pre-filled session for a demo persona. */
 export function sessionForPersona(id: PersonaId, demoMode: boolean): Session {
   const persona = getPersona(id);
-  const kickoff = getScenario(persona?.kickoffScenarioId);
-  const followup = getScenario(persona?.followupScenarioId);
+  // Meetings whose real output is still missing stay hidden (empty) for now.
+  const kickoff = getReadyScenario(personaScenarioId(persona, 1));
+  const followup = getReadyScenario(personaScenarioId(persona, 2));
   return {
     demoMode,
     compareMode: false,
@@ -135,12 +141,11 @@ export function sessionForPersona(id: PersonaId, demoMode: boolean): Session {
 
 /** Decides which scenario's sheet a meeting shows (spec 6.3 output behaviour). */
 export function resolvePreparedSheet(session: Session, meeting: MeetingNumber): PreparedSheet {
-  const persona = getPersona(session.personaId);
-  const personaScenarioId =
-    meeting === 1 ? persona?.kickoffScenarioId : persona?.followupScenarioId;
-  if (personaScenarioId) return { scenarioId: personaScenarioId, isExample: false };
+  const ownScenarioId = personaScenarioId(getPersona(session.personaId), meeting);
+  if (ownScenarioId) return { scenarioId: ownScenarioId, isExample: false };
   const topicIdea = session.meeting1.topicIdea ?? 'none';
-  return { scenarioId: fallbackScenarioId(meeting, topicIdea), isExample: true };
+  const notes = meeting === 1 ? session.meeting1.notes : session.meeting2.notes;
+  return { scenarioId: fallbackScenarioId(meeting, topicIdea, notes), isExample: true };
 }
 
 export const SessionContext = createContext<SessionApi | null>(null);

@@ -35,13 +35,21 @@ describe('hasAfterNotes', () => {
 });
 
 describe('sessionForPersona', () => {
-  it('pre-fills meeting 1 and 2 for a persona with both scenarios', () => {
+  it('pre-fills the meetings a persona has real outputs for', () => {
     const session = sessionForPersona('mia', true);
     expect(session.personaId).toBe('mia');
     expect(session.demoMode).toBe(true);
-    expect(session.meeting1.notes).not.toBe('');
+    expect(session.meeting1.notes).toContain('HR chatbot for onboarding');
     expect(session.meeting1.topicIdea).toBe('torn');
-    expect(session.meeting2.notes).not.toBe('');
+    // Mia's follow-up (R3.1-S4b) is not there yet, so meeting 2 stays empty.
+    expect(session.meeting2.notes).toBe('');
+    expect(hasAfterNotes(session.meeting1.after)).toBe(false);
+  });
+
+  it('pre-fills the after-meeting notes from the follow-up context', () => {
+    const session = sessionForPersona('jonas', true);
+    expect(session.meeting1.notes).toBe('');
+    expect(session.meeting2.notes).toContain('Candidate models: Llama 3 and Mistral');
     expect(hasAfterNotes(session.meeting1.after)).toBe(true);
   });
 
@@ -52,26 +60,50 @@ describe('sessionForPersona', () => {
   });
 });
 
+const longNotes =
+  'two ideas, a chatbot or predictive maintenance, not sure which one fits and what my supervisor expects';
+
+function typed(topicIdea: 'one' | 'torn' | 'none', notes = longNotes) {
+  return {
+    ...initialSession,
+    meeting1: { ...initialSession.meeting1, topicIdea, notes },
+    meeting2: { ...initialSession.meeting2, notes },
+  };
+}
+
 describe('resolvePreparedSheet', () => {
   it("uses the persona's own scenario", () => {
     expect(resolvePreparedSheet(sessionForPersona('mia', true), 1)).toEqual({
       scenarioId: 'S1',
       isExample: false,
     });
-    expect(resolvePreparedSheet(sessionForPersona('mia', true), 2)).toEqual({
-      scenarioId: 'S4',
+    expect(resolvePreparedSheet(sessionForPersona('jonas', true), 2)).toEqual({
+      scenarioId: 'S5',
       isExample: false,
     });
   });
 
-  it('falls back to an example by topic idea for typed notes (spec 6.3)', () => {
-    const typed = (topicIdea: 'one' | 'torn' | 'none') => ({
-      ...initialSession,
-      meeting1: { ...initialSession.meeting1, topicIdea },
-    });
+  it('falls back to the first ready example of fallbacks.json for typed notes (spec 6.3)', () => {
     expect(resolvePreparedSheet(typed('none'), 1)).toEqual({ scenarioId: 'S2', isExample: true });
     expect(resolvePreparedSheet(typed('torn'), 1)).toEqual({ scenarioId: 'S1', isExample: true });
-    expect(resolvePreparedSheet(typed('one'), 1)).toEqual({ scenarioId: 'S3', isExample: true });
+    // S3 is not there yet, so the next entry in the list is used.
+    expect(resolvePreparedSheet(typed('one'), 1)).toEqual({ scenarioId: 'S1', isExample: true });
+    expect(resolvePreparedSheet(typed('none'), 2)).toEqual({ scenarioId: 'S6', isExample: true });
+    // S4b is not there yet, so S5 (same content) is used.
+    expect(resolvePreparedSheet(typed('torn'), 2)).toEqual({ scenarioId: 'S5', isExample: true });
+    expect(resolvePreparedSheet(typed('one'), 2)).toEqual({ scenarioId: 'S5', isExample: true });
+  });
+
+  it('shows the clarifying example (X1) for typed kick-off notes under 15 words', () => {
+    const fourteen =
+      'one two three four five six seven eight nine ten eleven twelve thirteen fourteen';
+    expect(resolvePreparedSheet(typed('one', fourteen), 1)).toEqual({
+      scenarioId: 'X1',
+      isExample: true,
+    });
+    expect(resolvePreparedSheet(typed('one', `${fourteen} fifteen`), 1).scenarioId).not.toBe('X1');
+    // Only for the kick-off: X1 is a kick-off output.
+    expect(resolvePreparedSheet(typed('none', fourteen), 2).scenarioId).toBe('S6');
   });
 
   it('falls back to an example for a persona step that is hidden', () => {

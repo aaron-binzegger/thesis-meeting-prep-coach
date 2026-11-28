@@ -143,6 +143,16 @@ export interface Comparison {
   keyResults: { label: string; value: string }[];
 }
 
+/**
+ * Which example sheet a student sees for their own typed notes (spec 6.3).
+ * Lists are in order of preference; the first scenario that is ready wins.
+ */
+export interface Fallbacks {
+  thinNotes: { underWords: number; scenarioId: string };
+  kickoff: Record<TopicIdea, string[]>;
+  followup: Record<TopicIdea, string[]>;
+}
+
 export function isPlaceholder(runId: string): boolean {
   return runId === PLACEHOLDER_RUN_ID;
 }

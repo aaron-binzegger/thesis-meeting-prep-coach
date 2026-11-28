@@ -3,7 +3,13 @@ import { useId, useState, type ReactNode } from 'react';
 import { ButtonLink } from '../../components/Button/Button.tsx';
 import { Card } from '../../components/Card/Card.tsx';
 import { PrepSheetView } from '../../components/PrepSheet/PrepSheetView.tsx';
-import { getMeetingType, getScenario, getSheet } from '../../data/index.ts';
+import {
+  getMeetingType,
+  getPersona,
+  getReadyScenario,
+  getSheet,
+  personaScenarioId,
+} from '../../data/index.ts';
 import type { MeetingStatus } from '../../state/session.ts';
 import { useSession } from '../../state/useSession.ts';
 import type { MeetingKind, MeetingType } from '../../types/prep-sheet.ts';
@@ -45,7 +51,7 @@ function AlsoAvailable({
 }) {
   const panelId = useId();
   const [showSheet, setShowSheet] = useState(false);
-  const scenario = getScenario(type.exampleScenarioId);
+  const scenario = getReadyScenario(type.exampleScenarioId);
   const sheet = getSheet(scenario?.sheetId);
 
   return (
@@ -97,6 +103,9 @@ export default function Journey() {
   const followup = getMeetingType('followup');
   const meeting1Prepared = Boolean(session.meeting1.prepared);
   const meeting2Prepared = Boolean(session.meeting2.prepared);
+  // A demo persona only shows the meetings that have a real coach output.
+  const persona = getPersona(session.personaId);
+  const showMeeting = (meeting: 1 | 2) => !persona || Boolean(personaScenarioId(persona, meeting));
 
   return (
     <div className={styles.page}>
@@ -108,55 +117,59 @@ export default function Journey() {
       </header>
 
       <ol className={styles.timeline}>
-        <li className={styles.step}>
-          <Card as="article" className={styles.main}>
-            <h2>{kickoff?.title ?? 'Meeting 1: Kick-off'}</h2>
-            <p>{kickoff?.summary}</p>
-            <StatusLabel icon={statusIcons[status[1]]}>{statusLabels[status[1]]}</StatusLabel>
-            <div className={styles.actions}>
-              {meeting1Prepared ? (
+        {showMeeting(1) && (
+          <li className={styles.step}>
+            <Card as="article" className={styles.main}>
+              <h2>{kickoff?.title ?? 'Meeting 1: Kick-off'}</h2>
+              <p>{kickoff?.summary}</p>
+              <StatusLabel icon={statusIcons[status[1]]}>{statusLabels[status[1]]}</StatusLabel>
+              <div className={styles.actions}>
+                {meeting1Prepared ? (
+                  <>
+                    <ButtonLink to="/meeting/1/sheet">Open your prep sheet</ButtonLink>
+                    <ButtonLink to="/meeting/1/after" variant="secondary">
+                      Add notes after the meeting
+                    </ButtonLink>
+                  </>
+                ) : (
+                  <ButtonLink to="/meeting/1/setup">Prepare meeting 1</ButtonLink>
+                )}
+              </div>
+            </Card>
+          </li>
+        )}
+
+        {showMeeting(2) && (
+          <li className={styles.step}>
+            <Card as="article" className={styles.main} tone={meeting2Unlocked ? 'panel' : 'tinted'}>
+              <h2>{followup?.title ?? 'Meeting 2: Follow-up'}</h2>
+              <p>{followup?.summary}</p>
+              {meeting2Unlocked ? (
                 <>
-                  <ButtonLink to="/meeting/1/sheet">Open your prep sheet</ButtonLink>
-                  <ButtonLink to="/meeting/1/after" variant="secondary">
-                    Add notes after the meeting
-                  </ButtonLink>
+                  <StatusLabel icon={statusIcons[status[2]]}>{statusLabels[status[2]]}</StatusLabel>
+                  <div className={styles.actions}>
+                    {meeting2Prepared ? (
+                      <ButtonLink to="/meeting/2/sheet">Open your prep sheet</ButtonLink>
+                    ) : (
+                      <ButtonLink to="/meeting/2/setup">Prepare meeting 2</ButtonLink>
+                    )}
+                  </div>
                 </>
               ) : (
-                <ButtonLink to="/meeting/1/setup">Prepare meeting 1</ButtonLink>
+                <>
+                  <StatusLabel icon={<Lock size={18} />}>
+                    Locked. Opens after you add notes from meeting 1
+                  </StatusLabel>
+                  <div className={styles.actions}>
+                    <ButtonLink to="/meeting/1/after" variant="secondary">
+                      Add notes from meeting 1
+                    </ButtonLink>
+                  </div>
+                </>
               )}
-            </div>
-          </Card>
-        </li>
-
-        <li className={styles.step}>
-          <Card as="article" className={styles.main} tone={meeting2Unlocked ? 'panel' : 'tinted'}>
-            <h2>{followup?.title ?? 'Meeting 2: Follow-up'}</h2>
-            <p>{followup?.summary}</p>
-            {meeting2Unlocked ? (
-              <>
-                <StatusLabel icon={statusIcons[status[2]]}>{statusLabels[status[2]]}</StatusLabel>
-                <div className={styles.actions}>
-                  {meeting2Prepared ? (
-                    <ButtonLink to="/meeting/2/sheet">Open your prep sheet</ButtonLink>
-                  ) : (
-                    <ButtonLink to="/meeting/2/setup">Prepare meeting 2</ButtonLink>
-                  )}
-                </div>
-              </>
-            ) : (
-              <>
-                <StatusLabel icon={<Lock size={18} />}>
-                  Locked. Opens after you add notes from meeting 1
-                </StatusLabel>
-                <div className={styles.actions}>
-                  <ButtonLink to="/meeting/1/after" variant="secondary">
-                    Add notes from meeting 1
-                  </ButtonLink>
-                </div>
-              </>
-            )}
-          </Card>
-        </li>
+            </Card>
+          </li>
+        )}
 
         {alsoAvailable.map((kind) => {
           const type = getMeetingType(kind);

@@ -1,14 +1,16 @@
 import { Check } from 'lucide-react';
 import { forwardRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { personas } from '../../data/index.ts';
+import { personas, personaScenarioId } from '../../data/index.ts';
 import { useSession } from '../../state/useSession.ts';
 import type { Persona } from '../../types/prep-sheet.ts';
 import styles from './DemoPanel.module.css';
 
 function coverage(persona: Persona): string {
-  if (persona.kickoffScenarioId && persona.followupScenarioId) return 'Kick-off and follow-up';
-  return persona.kickoffScenarioId ? 'Kick-off only' : 'Follow-up only';
+  const kickoff = personaScenarioId(persona, 1);
+  const followup = personaScenarioId(persona, 2);
+  if (kickoff && followup) return 'Kick-off and follow-up';
+  return kickoff ? 'Kick-off only' : 'Follow-up only';
 }
 
 export interface DemoPanelProps {
@@ -28,7 +30,7 @@ export const DemoPanel = forwardRef<HTMLDivElement, DemoPanelProps>(function Dem
 
   function pick(persona: Persona) {
     selectPersona(persona.id);
-    navigate(persona.kickoffScenarioId ? '/meeting/1/setup' : '/meeting/2/setup');
+    navigate(personaScenarioId(persona, 1) ? '/meeting/1/setup' : '/meeting/2/setup');
     onPicked?.();
   }
 
