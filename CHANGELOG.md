@@ -34,10 +34,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - "Also available" panels on the Journey, including the pre-submission example sheet (X4).
 - How it works page: workflow diagram, what the coach never does, prompt iterations and key results, privacy and limitations.
 - Use it in your own AI page: copy-paste prompt and a downloadable `SKILL.md` (placeholders until the final prompt is in).
-- Real test outputs in `data-source/` (coach runs R3.1-S1, S2, S5, S6 and R3-X1; baselines B-S1, S2, S4, S5, S6).
+- Real test outputs in `data-source/` (coach runs R3.1-S1, S2, S3, S4b, S5, S6, R3-X1 and R3.1-X4; baselines B-S1, S2, S4, S5, S6).
 - Prep sheet fields for real outputs: verbatim extra blocks, "What I bring", agenda times as written, a note under the agenda, "From your notes" under Verify first, and decisions without listed options.
 - Clarifying state (R3-X1): the questions first, then "Use example answers" shows the fixed answer and the sheet. Shown for typed kick-off notes under 15 words and on How it works.
-- `src/data/fallbacks.json`: which example sheet typed notes get. The first ready scenario in each list wins, so S3 and S4b take over once their files are added.
+- `src/data/fallbacks.json`: which example sheet typed notes get. The first ready scenario in each list wins.
 - Data tests: every sheet's runId matches a file in `data-source/coach/`, model and minutes come from the front matter, and every text is copied verbatim from its source.
 
 ### Changed
@@ -45,11 +45,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The layout scales with the screen: 16 px base up to laptop width, growing to 20 px on large monitors and projectors.
 - Calmer prep sheet: two typefaces, four text sizes, the margin column holds labels and notes, colour only on priority icons and the "Verify first" highlighter.
 - On wide screens the sheet actions sit in a sticky rail next to the sheet.
-- The sheets of S1, S2, S5 and S6 are the real R3.1 outputs, copied verbatim. Scenario notes, context and baselines are the real test inputs and outputs, with reviewed compare annotations.
+- The sheets of S1–S6 and X4 are the real R3.1 outputs, copied verbatim (S4 is run R3.1-S4b). Scenario notes, context and baselines are the real test inputs and outputs, with reviewed compare annotations.
 - The one-line goal on the sheet is optional, because the real outputs have none.
 - "From your notes" shows the coach's text as written, without added quotation marks.
-- Demo personas show only the meetings that have a real output: Mia and Luca the kick-off, Sara and Jonas the follow-up for now. The pre-submission example stays hidden until X4 is in.
-- The institutional-facts check allows a phrase only if it is the student's own words from the notes and the sheet shows it under Verify first.
+- Demo personas show only the meetings that have a real output: Mia and Jonas both meetings, Luca the kick-off, Sara the follow-up. The pre-submission example on the Journey is the real X4 output.
+- The institutional-facts check covers every text on the sheet. It allows a phrase only if it is the student's own words from the notes and the sheet shows it under Verify first (X4 repeats "60 pages" in a question and lists it under Verify first).
 
 ### Removed
 
