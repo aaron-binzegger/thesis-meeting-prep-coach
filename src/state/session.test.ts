@@ -41,14 +41,14 @@ describe('sessionForPersona', () => {
     expect(session.demoMode).toBe(true);
     expect(session.meeting1.notes).toContain('HR chatbot for onboarding');
     expect(session.meeting1.topicIdea).toBe('torn');
-    // Mia's follow-up (R3.1-S4b) is not there yet, so meeting 2 stays empty.
-    expect(session.meeting2.notes).toBe('');
-    expect(hasAfterNotes(session.meeting1.after)).toBe(false);
+    // Mia's follow-up (R3.1-S4b) brings its own notes and the after-meeting notes.
+    expect(session.meeting2.notes).toContain('found 2 candidates: Llama 3 and Mistral');
+    expect(hasAfterNotes(session.meeting1.after)).toBe(true);
   });
 
   it('pre-fills the after-meeting notes from the follow-up context', () => {
     const session = sessionForPersona('jonas', true);
-    expect(session.meeting1.notes).toBe('');
+    expect(session.meeting1.notes).toContain('Option A: HR chatbot for employee onboarding');
     expect(session.meeting2.notes).toContain('Candidate models: Llama 3 and Mistral');
     expect(hasAfterNotes(session.meeting1.after)).toBe(true);
   });
@@ -77,8 +77,16 @@ describe('resolvePreparedSheet', () => {
       scenarioId: 'S1',
       isExample: false,
     });
+    expect(resolvePreparedSheet(sessionForPersona('jonas', true), 1)).toEqual({
+      scenarioId: 'S3',
+      isExample: false,
+    });
     expect(resolvePreparedSheet(sessionForPersona('jonas', true), 2)).toEqual({
       scenarioId: 'S5',
+      isExample: false,
+    });
+    expect(resolvePreparedSheet(sessionForPersona('mia', true), 2)).toEqual({
+      scenarioId: 'S4',
       isExample: false,
     });
   });
@@ -86,11 +94,9 @@ describe('resolvePreparedSheet', () => {
   it('falls back to the first ready example of fallbacks.json for typed notes (spec 6.3)', () => {
     expect(resolvePreparedSheet(typed('none'), 1)).toEqual({ scenarioId: 'S2', isExample: true });
     expect(resolvePreparedSheet(typed('torn'), 1)).toEqual({ scenarioId: 'S1', isExample: true });
-    // S3 is not there yet, so the next entry in the list is used.
-    expect(resolvePreparedSheet(typed('one'), 1)).toEqual({ scenarioId: 'S1', isExample: true });
+    expect(resolvePreparedSheet(typed('one'), 1)).toEqual({ scenarioId: 'S3', isExample: true });
     expect(resolvePreparedSheet(typed('none'), 2)).toEqual({ scenarioId: 'S6', isExample: true });
-    // S4b is not there yet, so S5 (same content) is used.
-    expect(resolvePreparedSheet(typed('torn'), 2)).toEqual({ scenarioId: 'S5', isExample: true });
+    expect(resolvePreparedSheet(typed('torn'), 2)).toEqual({ scenarioId: 'S4', isExample: true });
     expect(resolvePreparedSheet(typed('one'), 2)).toEqual({ scenarioId: 'S5', isExample: true });
   });
 

@@ -60,12 +60,14 @@ describe('Journey', () => {
     expect(button).toHaveAttribute('aria-expanded', 'false');
   });
 
-  it('hides the pre-submission example until its real output (X4) exists', async () => {
+  it('shows the real pre-submission example (X4)', async () => {
     const user = userEvent.setup();
     renderWithRouter(<Journey />, { route: '/journey' });
     await user.click(screen.getByRole('button', { name: 'Pre-submission' }));
     expect(screen.getByRole('heading', { name: 'What the coach does' })).toBeVisible();
-    expect(screen.queryByText('Show example sheet')).not.toBeInTheDocument();
+    await user.click(screen.getByText('Show example sheet'));
+    expect(screen.getByText(/Source run R3\.1-X4/)).toBeInTheDocument();
+    expect(screen.getByText('Web abstract deadline')).toBeInTheDocument();
   });
 
   it("hides a persona's meeting that has no real output yet", async () => {

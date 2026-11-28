@@ -1,0 +1,85 @@
+{
+  "id": "sheet-S3",
+  "runId": "R3.1-S3",
+  "model": "Claude Haiku 5.5, medium effort, 2026-11-28",
+  "agenda": [
+    {
+      "minutes": 3,
+      "time": "0–3",
+      "topic": "Opening",
+      "goal": "State what you want from this meeting"
+    },
+    {
+      "minutes": 10,
+      "time": "3–13",
+      "topic": "Option A (HR chatbot) and Option B (predictive maintenance)",
+      "goal": "Present each idea briefly and get first reactions"
+    },
+    {
+      "minutes": 5,
+      "time": "13–18",
+      "topic": "Compare two LLMs (possible approach)",
+      "goal": "Ask whether this is a topic, an approach, or both"
+    },
+    {
+      "minutes": 7,
+      "time": "18–25",
+      "topic": "Your questions",
+      "goal": "Work through the questions below"
+    },
+    {
+      "minutes": 5,
+      "time": "25–30",
+      "topic": "Summary",
+      "goal": "Confirm open points and next steps"
+    }
+  ],
+  "questions": [
+    {
+      "priority": "must",
+      "text": "Which of the two ideas, Option A or Option B, seems more promising to you, and what would you need to see to decide?",
+      "fromNotes": "\"Option A: HR chatbot... Option B: predictive maintenance...\""
+    },
+    {
+      "priority": "must",
+      "text": "How should I proceed while the client is not confirmed? Does this affect either option differently?",
+      "fromNotes": "\"Client not confirmed yet\""
+    },
+    {
+      "priority": "must",
+      "text": "What should the pitch contain, and how long should it be?",
+      "fromNotes": "\"Supervisor said 'be ready to pitch'. What goes into a pitch? 5 slides?\""
+    },
+    {
+      "priority": "should",
+      "text": "Is comparing two LLMs a topic on its own or an approach within one of the options?",
+      "fromNotes": "\"Possible approach: compare two LLMs\""
+    }
+  ],
+  "verifyFirst": [
+    {
+      "item": "Task description due date",
+      "whereToCheck": "check the programme regulations or ask the study office.",
+      "fromNotes": "\"When is the task description due?\""
+    },
+    {
+      "item": "Credits and expected workload",
+      "whereToCheck": "check the programme regulations or ask the study office before judging the ideas against them.",
+      "fromNotes": "\"Is 12 credits too much or too little work for these ideas?\""
+    },
+    {
+      "item": "Number of meetings",
+      "whereToCheck": "ask your supervisor or check the study office.",
+      "fromNotes": "\"How many meetings will we have?\""
+    }
+  ],
+  "supervisorDecides": [
+    { "decision": "Topic", "options": ["option A", "option B", "another topic"] },
+    { "decision": "Approach", "options": ["compare two LLMs", "another approach"] },
+    {
+      "decision": "Client",
+      "options": ["wait for confirmation", "start with the topic before a client is confirmed"]
+    }
+  ],
+  "nextStep": "Write a half-page summary for each option: the problem, the data you would need, and your first idea for a solution. Bring both to the meeting."
+}

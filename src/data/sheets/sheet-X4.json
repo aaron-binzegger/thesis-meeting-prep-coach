@@ -1,0 +1,99 @@
+{
+  "id": "sheet-X4",
+  "runId": "R3.1-X4",
+  "model": "Claude Haiku 5.5, medium effort, 2026-11-28",
+  "agenda": [
+    {
+      "minutes": 3,
+      "time": "0–3",
+      "topic": "Opening, confirm goal",
+      "goal": "Agree what we need to leave with"
+    },
+    {
+      "minutes": 7,
+      "time": "3–10",
+      "topic": "Chapter 4 theory",
+      "goal": "Hear options for the conflicting advice"
+    },
+    {
+      "minutes": 7,
+      "time": "10–17",
+      "topic": "Client's last-minute changes",
+      "goal": "Decide how to handle the requests"
+    },
+    {
+      "minutes": 6,
+      "time": "17–23",
+      "topic": "Length and figures",
+      "goal": "Get your view on 60 pages with many figures"
+    },
+    {
+      "minutes": 4,
+      "time": "23–27",
+      "topic": "Open rules",
+      "goal": "Agree who checks what (see Verify first)"
+    },
+    {
+      "minutes": 3,
+      "time": "27–30",
+      "topic": "Summary",
+      "goal": "Confirm decisions and next steps"
+    }
+  ],
+  "questions": [
+    {
+      "priority": "must",
+      "text": "How should we handle the differing advice on chapter 4 theory? Options include cutting it as you suggested, keeping it as the expert advised, or a middle path you prefer.",
+      "fromNotes": "\"supervisor says cut chapter 4 theory, expert said at mid-term I need MORE theory\""
+    },
+    {
+      "priority": "must",
+      "text": "How should we handle the client's requests for last-minute changes?",
+      "fromNotes": "\"client wants last-minute changes\""
+    },
+    {
+      "priority": "should",
+      "text": "Would you consider 60 pages with many figures appropriate for this submission? (Check the page limit first, see Verify first.)",
+      "fromNotes": "\"is 60 pages ok because lots of figures\""
+    }
+  ],
+  "verifyFirst": [
+    {
+      "item": "Page limit",
+      "whereToCheck": "and whether 60 pages fits it: programme regulations or study office."
+    },
+    { "item": "Printed copies", "whereToCheck": "whether they are required, study office." },
+    { "item": "Web abstract deadline", "whereToCheck": "study office or supervisor." },
+    {
+      "item": "Exact submission date",
+      "whereToCheck": "(your notes say 3 weeks away): study office."
+    },
+    {
+      "item": "Extension",
+      "whereToCheck": "whether one is possible, programme regulations, then supervisor."
+    },
+    {
+      "item": "AI voice in the pitching video",
+      "whereToCheck": "whether it is allowed, programme regulations, then supervisor."
+    },
+    {
+      "item": "NDA",
+      "whereToCheck": "whether one is needed for the client work, supervisor or study office."
+    }
+  ],
+  "supervisorDecides": [
+    {
+      "decision": "Chapter 4 theory",
+      "options": ["cut as suggested", "keep as expert advised", "partly keep"]
+    },
+    {
+      "decision": "Client last-minute changes",
+      "options": ["accept within scope", "postpone until after submission", "decline"]
+    },
+    {
+      "decision": "Length and figures",
+      "options": ["keep all figures", "move some to an appendix", "shorten text"]
+    }
+  ],
+  "nextStep": "Write down the expert's mid-term comment on chapter 4 as close to their wording as you can, with the date, so you can describe it neutrally in the meeting."
+}
