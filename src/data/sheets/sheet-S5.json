@@ -1,85 +1,115 @@
 {
   "id": "sheet-S5",
-  "runId": "PLACEHOLDER",
-  "model": "Placeholder (real R3 output follows)",
-  "goal": "Get feedback on your revised question and the interview plan, and solve the recruiting problem.",
+  "runId": "R3.1-S5",
+  "model": "Claude Haiku 5.5, medium effort, 2026-11-27",
   "sinceLastTime": {
     "decided": [
-      "The topic stays",
-      "The research question gets narrowed",
-      "Interviews are the method"
+      "HR onboarding chatbot is the topic (option B, the lift company, is dropped).",
+      "Compare 2 LLMs, local models only.",
+      "You write the first draft of the task description and send it before the next meeting.",
+      "Pitch feedback: the research question is too broad."
     ],
-    "carriedOver": ["How many interviews you need", "The ethics question"]
+    "carriedOver": [
+      "Which 2 LLMs to compare (open).",
+      "How to evaluate the answers (supervisor: \"think about metrics\", no details yet).",
+      "Task description deadline and number of meetings (to verify)."
+    ]
   },
   "agenda": [
     {
       "minutes": 5,
-      "topic": "Progress",
-      "goal": "Summarise what changed since the kick-off"
+      "time": "5",
+      "topic": "Narrowed research question",
+      "goal": "Agree on a narrower question, e.g. \"answer accuracy for onboarding FAQs\""
     },
     {
       "minutes": 10,
-      "topic": "Interviews",
-      "goal": "Discuss guide, pilots and sample size"
+      "time": "10",
+      "topic": "Models and evaluation",
+      "goal": "Get input on which 2 LLMs and how to evaluate them"
     },
     {
-      "minutes": 8,
-      "topic": "Recruiting and consent",
-      "goal": "Solve the recruiting problem and consent wording"
+      "minutes": 10,
+      "time": "10",
+      "topic": "Data and local-model constraints",
+      "goal": "Clarify use of internal documents and whether cloud models are allowed"
     },
     {
       "minutes": 5,
-      "topic": "Sources",
-      "goal": "Clarify how to cite company documents"
-    },
-    {
-      "minutes": 2,
+      "time": "5",
       "topic": "Next steps",
-      "goal": "Agree on the plan"
+      "goal": "Confirm the task description draft and the next meeting"
     }
   ],
+  "agendaNote": "Total: 30 minutes.",
   "questions": [
     {
       "priority": "must",
-      "text": "Are six interviews enough, or what should I base that on?",
-      "fromNotes": "is 6 interviews enough?"
+      "text": "Is comparing only 2 models enough? Your research question still feels broad, so would it help to narrow it to \"answer accuracy for onboarding FAQs\"?",
+      "fromNotes": "\"Is comparing only 2 models enough?\" and \"Research question still feels broad. Idea: narrow it to 'answer accuracy for onboarding FAQs'\""
     },
     {
       "priority": "must",
-      "text": "What could I do about recruiting only three confirmed participants?",
-      "fromNotes": "recruiting: only 3 people confirmed"
+      "text": "Which evaluation approach would you suggest? Would asking 5 colleagues to rate the answers be sufficient?",
+      "fromNotes": "\"Evaluation idea: ask 5 colleagues to rate the answers\" and \"think about metrics\""
+    },
+    {
+      "priority": "must",
+      "text": "Can I switch to cloud models if local models are too slow? This would change the decision to use local models only.",
+      "fromNotes": "\"Can I switch to cloud models if local models are too slow?\" (changes a decision from meeting 1)"
     },
     {
       "priority": "should",
-      "text": "Can you look at my consent form wording?",
-      "fromNotes": "consent form wording unclear"
+      "text": "Which 2 LLMs should I compare? I am considering Llama 3 and Mistral.",
+      "fromNotes": "\"Candidate models: Llama 3 and Mistral\""
     },
     {
       "priority": "should",
-      "text": "How should I cite company documents?",
-      "fromNotes": "how to cite company docs?"
+      "text": "Am I allowed to use the 40 example questions from the HR department, which are internal documents?",
+      "fromNotes": "\"The HR department of my company would give me 40 example questions. Am I allowed to use these internal documents?\""
     },
     {
       "priority": "if-time",
-      "text": "Is recruiting through a professional network acceptable?",
-      "fromNotes": "recruit through LinkedIn?"
+      "text": "Who should I contact about the rules for using internal company documents?",
+      "fromNotes": "\"Am I allowed to use these internal documents?\""
     }
   ],
   "verifyFirst": [
     {
-      "item": "Whether the interviews need formal ethics approval",
-      "whereToCheck": "Study office"
+      "item": "Task description deadline",
+      "whereToCheck": "check with your supervisor or the programme regulations."
     },
+    { "item": "Number of meetings", "whereToCheck": "ask your supervisor." },
     {
-      "item": "Which citation style is required",
-      "whereToCheck": "Your programme's regulations"
+      "item": "Rules for using internal company documents in a thesis",
+      "whereToCheck": "check with your supervisor, your company's data protection or HR contact, and the study office."
     }
   ],
   "supervisorDecides": [
     {
-      "decision": "The number of interviews",
-      "options": ["Stay at six", "Increase to eight", "Decide after the pilots"]
+      "decision": "Research question",
+      "options": [
+        "narrow to \"answer accuracy for onboarding FAQs\"",
+        "keep the current broader question",
+        "another option"
+      ]
+    },
+    {
+      "decision": "Models",
+      "options": ["Llama 3 and Mistral", "other local models", "other combination"]
+    },
+    {
+      "decision": "Evaluation",
+      "options": ["5 colleague ratings", "metrics-based evaluation", "combination of both"]
+    },
+    {
+      "decision": "Model type",
+      "options": ["local models only", "local models with cloud fallback"]
+    },
+    {
+      "decision": "Whether comparing 2 LLMs is enough",
+      "options": ["2 models", "more models"]
     }
   ],
-  "nextStep": "Bring the interview guide v1 and the consent form, and mark the two wordings you are unsure about."
+  "nextStep": "Finish the task description draft and send it to your supervisor before the meeting, including your narrowed research question as a proposal."
 }

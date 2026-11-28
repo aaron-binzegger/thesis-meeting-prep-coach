@@ -4,7 +4,13 @@ import { Callout } from '../../components/Callout/Callout.tsx';
 import { Card } from '../../components/Card/Card.tsx';
 import { TextArea, TextField } from '../../components/Field/Field.tsx';
 import { LoadingSteps, usePrepareFlow } from '../../components/LoadingSteps/index.ts';
-import { getPersona, getScenario, getSheet } from '../../data/index.ts';
+import {
+  getPersona,
+  getReadyScenario,
+  getScenario,
+  getSheet,
+  personaScenarioId,
+} from '../../data/index.ts';
 import { useSession } from '../../state/useSession.ts';
 import styles from './MeetingSetup.module.css';
 import { useFocusFirstError } from './useFocusFirstError.ts';
@@ -34,11 +40,16 @@ export default function MeetingTwoSetup() {
     );
   }
 
+  // A demo persona's follow-up was run with a fixed kick-off sheet as input; show that one
+  // verbatim. Otherwise show the kick-off sheet prepared in this session.
+  const followupContext = getReadyScenario(
+    personaScenarioId(getPersona(session.personaId), 2),
+  )?.context;
+  const previousSheetText = followupContext?.previousSheetText;
   const kickoffScenario = getScenario(session.meeting1.prepared?.scenarioId);
-  const sheetId =
-    kickoffScenario?.sheetId ??
-    getScenario(getPersona(session.personaId)?.followupScenarioId)?.context?.previousSheetId;
-  const sheet = getSheet(sheetId);
+  const sheet = previousSheetText
+    ? undefined
+    : getSheet(kickoffScenario?.sheetId ?? followupContext?.previousSheetId);
 
   function onSubmit(event: FormEvent) {
     event.preventDefault();
@@ -63,12 +74,22 @@ export default function MeetingTwoSetup() {
       </p>
       <Card as="section" tone="tinted" className={styles.context} aria-labelledby="carried-over">
         <h2 id="carried-over">Carried over from meeting 1</h2>
+        {previousSheetText && (
+          <details>
+            <summary className={styles.summary}>Your kick-off sheet</summary>
+            <pre className={styles.sheetText}>{previousSheetText}</pre>
+          </details>
+        )}
         {sheet && (
           <details>
             <summary className={styles.summary}>Your kick-off sheet</summary>
             <div className={styles.sheetBody}>
-              <h3>Goal</h3>
-              <p>{sheet.goal}</p>
+              {sheet.goal && (
+                <>
+                  <h3>Goal</h3>
+                  <p>{sheet.goal}</p>
+                </>
+              )}
               <h3>Questions</h3>
               <ul>
                 {sheet.questions.map((q) => (

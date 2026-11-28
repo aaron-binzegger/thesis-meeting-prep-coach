@@ -2,6 +2,7 @@ import { useRef, useState, type FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../../components/Button/Button.tsx';
 import { TextArea } from '../../components/Field/Field.tsx';
+import { getPersona, personaScenarioId } from '../../data/index.ts';
 import { hasAfterNotes } from '../../state/session.ts';
 import { useSession } from '../../state/useSession.ts';
 import { useFocusFirstError } from '../MeetingSetup/useFocusFirstError.ts';
@@ -15,6 +16,9 @@ export default function AfterMeeting() {
   const [attempt, setAttempt] = useState(0);
   const formRef = useRef<HTMLFormElement>(null);
   useFocusFirstError(formRef, attempt);
+  const persona = getPersona(session.personaId);
+  // A demo persona without a real meeting 2 output ends the walkthrough here.
+  const meeting2Hidden = Boolean(persona && !personaScenarioId(persona, 2));
 
   function onSubmit(event: FormEvent) {
     event.preventDefault();
@@ -23,7 +27,7 @@ export default function AfterMeeting() {
       setAttempt((a) => a + 1);
       return;
     }
-    navigate('/meeting/2/setup');
+    navigate(meeting2Hidden ? '/journey' : '/meeting/2/setup');
   }
 
   function change(patch: Partial<typeof after>) {
@@ -63,7 +67,9 @@ export default function AfterMeeting() {
           value={after.next}
           onChange={(e) => change({ next: e.target.value })}
         />
-        <Button type="submit">Prepare meeting 2</Button>
+        <Button type="submit">
+          {meeting2Hidden ? 'Save and go to your journey' : 'Prepare meeting 2'}
+        </Button>
       </form>
     </div>
   );

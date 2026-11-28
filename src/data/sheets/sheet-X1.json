@@ -1,0 +1,102 @@
+{
+  "id": "sheet-X1",
+  "runId": "R3-X1",
+  "model": "Claude Haiku 5.5, medium effort, 2026-11-23",
+  "clarifyingLead": "Before I can help, I need a bit more from you:",
+  "clarifyingQuestions": [
+    "What is your thesis area or the general field you're in (even a rough area is enough)?",
+    "Do you have any topic ideas yet, even vague ones, or do you want to arrive with no ideas at all?",
+    "What are you good at, or what have you worked on before (courses, jobs, projects) that could guide the topic choice?"
+  ],
+  "clarifyingClosing": "Once I have these, I can build a one-page preparation sheet for tomorrow's kick-off meeting with your supervisor.",
+  "exampleAnswer": "Here are my answers:\n- Field: computer science, roughly data and web development.\n- Topic ideas: none yet.\n- Background: I liked the databases and web development courses. I work part-time in customer support at a software company and built a small internal FAQ page there.\n- Meeting: kick-off, 30 minutes, tomorrow.",
+  "whatIBring": [
+    { "label": "Field", "text": "computer science, roughly data and web development" },
+    { "label": "Courses", "text": "I liked the databases and web development courses" },
+    {
+      "label": "Experience",
+      "text": "I work part-time in customer support at a software company and built a small internal FAQ page there"
+    },
+    { "label": "Constraint", "text": "part-time job" }
+  ],
+  "agenda": [
+    {
+      "minutes": 5,
+      "time": "0-5",
+      "topic": "Introductions and my background",
+      "goal": "Give the supervisor a quick picture of me"
+    },
+    {
+      "minutes": 7,
+      "time": "5-12",
+      "topic": "How topic finding works with you",
+      "goal": "Understand the process"
+    },
+    {
+      "minutes": 8,
+      "time": "12-20",
+      "topic": "What a good starting point looks like",
+      "goal": "Learn what to bring next time"
+    },
+    {
+      "minutes": 7,
+      "time": "20-27",
+      "topic": "Expectations for the next meeting",
+      "goal": "Agree on what to prepare"
+    },
+    {
+      "minutes": 3,
+      "time": "27-30",
+      "topic": "Open questions and wrap-up",
+      "goal": "Confirm next steps"
+    }
+  ],
+  "questions": [
+    {
+      "priority": "must",
+      "text": "How does topic finding usually work with you: do you offer topic areas, or do students propose their own?",
+      "fromNotes": "no topic ideas yet; field roughly data and web development."
+    },
+    {
+      "priority": "must",
+      "text": "What does a good starting point look like at this stage?",
+      "fromNotes": "\"no idea. help.\""
+    },
+    {
+      "priority": "must",
+      "text": "What should I prepare for our next meeting?",
+      "fromNotes": "\"kickoff tmrw. no idea. help.\""
+    },
+    {
+      "priority": "should",
+      "text": "Would it help if I brought a short written summary of my courses and work experience?",
+      "fromNotes": "liked the databases and web development courses; built an internal FAQ page."
+    },
+    {
+      "priority": "if-time",
+      "text": "Are there past student projects in data or web development that I could look at?",
+      "fromNotes": "field roughly data and web development."
+    }
+  ],
+  "verifyFirst": [
+    {
+      "item": "Thesis timeline, submission dates and registration steps",
+      "whereToCheck": "check with your supervisor, the programme regulations, or the study office."
+    },
+    {
+      "item": "Page limits, credit points and expected workload",
+      "whereToCheck": "check the programme regulations or ask your supervisor."
+    }
+  ],
+  "supervisorDecides": [
+    {
+      "decision": "Whether the thesis starts from a practical problem you have seen at work or from a topic area covered in a course.",
+      "options": []
+    },
+    {
+      "decision": "Whether you pick a topic directly or choose from a shortlist of areas the supervisor suggests.",
+      "options": []
+    }
+  ],
+  "nextStep": "Write two or three sentences on what you liked in the databases and web development courses and what your FAQ page work involved. Bring them with your questions."
+}

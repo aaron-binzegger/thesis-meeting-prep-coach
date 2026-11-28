@@ -1,0 +1,5 @@
+{
+  "thinNotes": { "underWords": 15, "scenarioId": "X1" },
+  "kickoff": { "one": ["S3", "S1"], "torn": ["S1"], "none": ["S2"] },
+  "followup": { "one": ["S5"], "torn": ["S4", "S5"], "none": ["S6"] }
+}

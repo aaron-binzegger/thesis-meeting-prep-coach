@@ -24,7 +24,7 @@ export interface Persona {
 }
 
 export interface Scenario {
-  id: string; // 'S1' ... 'S6', 'X4'
+  id: string; // 'S1' ... 'S6', 'X1', 'X4'
   meeting: MeetingKind;
   minutes: number;
   topicIdea: TopicIdea;
@@ -34,14 +34,22 @@ export interface Scenario {
    * `previousSheetId` is optional because a persona can start at meeting 2
    * (Sara: her kick-off is not part of the prototype).
    */
-  context?: { previousSheetId?: string; afterMeetingNotes: string };
+  context?: {
+    previousSheetId?: string;
+    /** Verbatim "prep sheet used last time" that was given to the coach as input. */
+    previousSheetText?: string;
+    afterMeetingNotes: string;
+  };
   sheetId: string; // coach output (R3)
   baselineText?: string; // verbatim baseline output for the compare view
   baselineAnnotations?: string[];
 }
 
 export interface AgendaItem {
+  /** Length of the item in minutes, used for the total and the time bar. */
   minutes: number;
+  /** The minutes cell exactly as the coach wrote it, e.g. "0–5". Shown instead of `minutes`. */
+  time?: string;
   topic: string;
   goal: string;
 }
@@ -55,21 +63,49 @@ export interface SheetQuestion {
 export interface VerifyItem {
   item: string;
   whereToCheck: string;
+  fromNotes?: string;
 }
 
 export interface SupervisorDecision {
   decision: string;
+  /** Empty when the coach phrased the decision as one sentence without listed options. */
   options: string[];
+}
+
+/** One line of "What I bring", e.g. { label: 'Interests', text: '…' }. */
+export interface BringItem {
+  label: string;
+  text: string;
+}
+
+/** Part of a real coach output that fits no other field. Kept verbatim and shown on the sheet. */
+export interface ExtraBlock {
+  heading: string;
+  markdown: string;
 }
 
 export interface PrepSheet {
   id: string;
-  runId: string; // e.g. 'R3-S1' – links to the test log
-  model: string; // e.g. 'Claude Sonnet …, 2026-11-26'
-  goal: string;
+  runId: string; // e.g. 'R3.1-S1' – matches a file in data-source/coach/
+  model: string; // e.g. 'Claude Haiku 5.5, medium effort, 2026-11-27'
+  /** One-line goal. Real outputs do not have one, so it is optional and never invented. */
+  goal?: string;
+  /** Verbatim parts of the output that fit no other field (shown at the top of the sheet). */
+  extraBlocks?: ExtraBlock[];
+  /**
+   * Clarifying state (turn 1 of the coach). When set, the sheet first shows only these
+   * questions; the rest of the sheet is the coach's turn 2 after `exampleAnswer`.
+   */
   clarifyingQuestions?: string[];
+  clarifyingLead?: string;
+  clarifyingClosing?: string;
+  /** The fixed answer that was sent to the coach after turn 1 (verbatim). */
+  exampleAnswer?: string;
+  whatIBring?: BringItem[];
   sinceLastTime?: { decided: string[]; carriedOver: string[] };
   agenda: AgendaItem[];
+  /** Verbatim line under the agenda table, e.g. "Total: 30 minutes." */
+  agendaNote?: string;
   questions: SheetQuestion[]; // max 6
   verifyFirst: VerifyItem[];
   supervisorDecides: SupervisorDecision[];
@@ -105,6 +141,16 @@ export interface Comparison {
     result: string;
   }[];
   keyResults: { label: string; value: string }[];
+}
+
+/**
+ * Which example sheet a student sees for their own typed notes (spec 6.3).
+ * Lists are in order of preference; the first scenario that is ready wins.
+ */
+export interface Fallbacks {
+  thinNotes: { underWords: number; scenarioId: string };
+  kickoff: Record<TopicIdea, string[]>;
+  followup: Record<TopicIdea, string[]>;
 }
 
 export function isPlaceholder(runId: string): boolean {

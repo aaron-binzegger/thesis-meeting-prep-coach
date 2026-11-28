@@ -89,10 +89,6 @@
   display: block;
 }
 
-.quote q {
-  quotes: '\201C' '\201D';
-}
-
 @media (min-width: 48rem) {
   .sheet {
     --sheet-pad: var(--space-5);

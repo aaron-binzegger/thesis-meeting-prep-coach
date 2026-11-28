@@ -148,3 +148,18 @@
     gap: var(--space-4);
   }
 }
+
+.example {
+  margin-top: var(--space-5);
+}
+
+.example > summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.exampleBody {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}

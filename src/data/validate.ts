@@ -90,9 +90,20 @@ export function validateScenario(value: Json, where = 'scenario'): Problems {
     if (!isObject(context)) {
       problems.push(`${where}.context: not an object`);
     } else {
-      checkKeys(`${where}.context`, context, ['afterMeetingNotes'], ['previousSheetId'], problems);
+      checkKeys(
+        `${where}.context`,
+        context,
+        ['afterMeetingNotes'],
+        ['previousSheetId', 'previousSheetText'],
+        problems,
+      );
       if (!isNonEmptyString(context.afterMeetingNotes)) {
         problems.push(`${where}.context: "afterMeetingNotes" must be text`);
+      }
+      for (const key of ['previousSheetId', 'previousSheetText']) {
+        if (key in context && !isNonEmptyString(context[key])) {
+          problems.push(`${where}.context: "${key}" must be text`);
+        }
       }
     }
   }
@@ -111,22 +122,61 @@ export function validateSheet(value: Json, where = 'sheet'): Problems {
   checkKeys(
     where,
     value,
+    ['id', 'runId', 'model', 'agenda', 'questions', 'verifyFirst', 'supervisorDecides', 'nextStep'],
     [
-      'id',
-      'runId',
-      'model',
       'goal',
-      'agenda',
-      'questions',
-      'verifyFirst',
-      'supervisorDecides',
-      'nextStep',
+      'extraBlocks',
+      'clarifyingQuestions',
+      'clarifyingLead',
+      'clarifyingClosing',
+      'exampleAnswer',
+      'whatIBring',
+      'sinceLastTime',
+      'agendaNote',
+      'privacyWarning',
     ],
-    ['clarifyingQuestions', 'sinceLastTime', 'privacyWarning'],
     problems,
   );
-  for (const key of ['id', 'runId', 'model', 'goal', 'nextStep']) {
+  for (const key of ['id', 'runId', 'model', 'nextStep']) {
     if (!isNonEmptyString(value[key])) problems.push(`${where}: "${key}" must be text`);
+  }
+  for (const key of [
+    'goal',
+    'clarifyingLead',
+    'clarifyingClosing',
+    'exampleAnswer',
+    'agendaNote',
+  ]) {
+    if (key in value && !isNonEmptyString(value[key])) {
+      problems.push(`${where}: "${key}" must be text`);
+    }
+  }
+  const clarifyingKeys = ['clarifyingLead', 'clarifyingClosing', 'exampleAnswer'];
+  if (clarifyingKeys.some((key) => key in value) && !('clarifyingQuestions' in value)) {
+    problems.push(`${where}: clarifying texts need "clarifyingQuestions"`);
+  }
+  if ('clarifyingQuestions' in value && !('exampleAnswer' in value)) {
+    problems.push(`${where}: "clarifyingQuestions" need an "exampleAnswer" to reach the sheet`);
+  }
+
+  for (const [key, fields] of [
+    ['extraBlocks', ['heading', 'markdown']],
+    ['whatIBring', ['label', 'text']],
+  ] as const) {
+    if (!(key in value)) continue;
+    const list = value[key];
+    if (!Array.isArray(list) || list.length === 0) {
+      problems.push(`${where}: "${key}" must be a non-empty list`);
+      continue;
+    }
+    list.forEach((entry, i) => {
+      const at = `${where}.${key}[${i}]`;
+      if (!isObject(entry)) return problems.push(`${at}: not an object`);
+      checkKeys(at, entry, [...fields], [], problems);
+      for (const field of fields) {
+        if (!isNonEmptyString(entry[field])) problems.push(`${at}: "${field}" must be text`);
+      }
+    });
   }
 
   if (!Array.isArray(value.agenda) || value.agenda.length === 0) {
@@ -135,7 +185,10 @@ export function validateSheet(value: Json, where = 'sheet'): Problems {
     value.agenda.forEach((item, i) => {
       const at = `${where}.agenda[${i}]`;
       if (!isObject(item)) return problems.push(`${at}: not an object`);
-      checkKeys(at, item, ['minutes', 'topic', 'goal'], [], problems);
+      checkKeys(at, item, ['minutes', 'topic', 'goal'], ['time'], problems);
+      if ('time' in item && !isNonEmptyString(item.time)) {
+        problems.push(`${at}: "time" must be text`);
+      }
       if (typeof item.minutes !== 'number' || item.minutes <= 0) {
         problems.push(`${at}: "minutes" must be a positive number`);
       }
@@ -173,7 +226,10 @@ export function validateSheet(value: Json, where = 'sheet'): Problems {
     value.verifyFirst.forEach((v, i) => {
       const at = `${where}.verifyFirst[${i}]`;
       if (!isObject(v)) return problems.push(`${at}: not an object`);
-      checkKeys(at, v, ['item', 'whereToCheck'], [], problems);
+      checkKeys(at, v, ['item', 'whereToCheck'], ['fromNotes'], problems);
+      if ('fromNotes' in v && !isNonEmptyString(v.fromNotes)) {
+        problems.push(`${at}: "fromNotes" must be text`);
+      }
       if (!isNonEmptyString(v.item) || !isNonEmptyString(v.whereToCheck)) {
         problems.push(`${at}: "item" and "whereToCheck" must be text`);
       }
@@ -188,8 +244,8 @@ export function validateSheet(value: Json, where = 'sheet'): Problems {
       if (!isObject(d)) return problems.push(`${at}: not an object`);
       checkKeys(at, d, ['decision', 'options'], [], problems);
       if (!isNonEmptyString(d.decision)) problems.push(`${at}: "decision" must be text`);
-      if (!isStringArray(d.options) || d.options.length < 2) {
-        problems.push(`${at}: "options" must list at least two options`);
+      if (!isStringArray(d.options) || d.options.length === 1) {
+        problems.push(`${at}: "options" must be empty or list at least two options`);
       }
     });
   }

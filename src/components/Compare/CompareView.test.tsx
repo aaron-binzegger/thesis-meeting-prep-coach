@@ -14,14 +14,14 @@ describe('CompareView', () => {
     expect(screen.getByRole('heading', { name: 'Compare with a plain AI prompt' })).toBeVisible();
     expect(screen.getByRole('heading', { name: 'Plain AI prompt' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Prep Coach' })).toBeInTheDocument();
-    expect(screen.getByText(/comprehensive guide/)).toBeInTheDocument();
+    expect(screen.getByText(/Here's a plan for the 30 minutes/)).toBeInTheDocument();
     expect(screen.getAllByRole('listitem')).toHaveLength(s1.baselineAnnotations!.length);
     expect(screen.getByText('SHEET')).toBeInTheDocument();
   });
 
   it('shows a note and the sheet when there is no baseline', () => {
     render(
-      <CompareView scenario={getScenario('S3')!}>
+      <CompareView scenario={getScenario('X1')!}>
         <p>SHEET</p>
       </CompareView>,
     );
