@@ -55,9 +55,10 @@ describe('DemoPanel', () => {
 
   it('shows who covers which meetings', async () => {
     await openPanel();
-    // Meetings without a real coach output yet (S3, S4b) are hidden.
-    expect(screen.getAllByText('Kick-off only').length).toBeGreaterThan(0);
-    expect(screen.getAllByText('Follow-up only').length).toBeGreaterThan(0);
+    // Mia and Jonas have both meetings; Luca starts at the kick-off, Sara at the follow-up.
+    expect(screen.getAllByText('Kick-off and follow-up')).toHaveLength(2);
+    expect(screen.getAllByText('Kick-off only')).toHaveLength(1);
+    expect(screen.getAllByText('Follow-up only')).toHaveLength(1);
   });
 
   it('toggles the compare switch', async () => {

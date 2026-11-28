@@ -29,6 +29,14 @@
     ]
   },
   {
+    "id": "S3",
+    "meeting": "kickoff",
+    "minutes": 30,
+    "topicIdea": "torn",
+    "notes": "Kick-off meeting – next week\n\nTopic status:\n- Option A: HR chatbot for employee onboarding\n- Option B: predictive maintenance for a lift company (a friend works there; not sure he has time)\n- Possible approach: compare two LLMs\n\nConstraints:\n- Python is fine; no cloud\n- Client not confirmed yet\n\nOpen questions:\n- Supervisor said \"be ready to pitch\". What goes into a pitch? 5 slides?\n- When is the task description due?\n- Is 12 credits too much or too little work for these ideas?\n- How many meetings will we have?",
+    "sheetId": "sheet-S3"
+  },
+  {
     "id": "S4",
     "meeting": "followup",
     "minutes": 30,
@@ -91,5 +99,13 @@
     "topicIdea": "none",
     "notes": "kickoff tmrw. no idea. help",
     "sheetId": "sheet-X1"
+  },
+  {
+    "id": "X4",
+    "meeting": "presubmission",
+    "minutes": 30,
+    "topicIdea": "one",
+    "notes": "submission in 3 weeks. questions: page limit? is 60 pages ok because lots of\nfigures. do I need to print copies? when must the web abstract be ready? can\nI use an AI voice for the pitching video? supervisor says cut chapter 4\ntheory, expert said at mid-term I need MORE theory - who is right? client\nwants last-minute changes, can I get an extension? NDA needed?",
+    "sheetId": "sheet-X4"
   }
 ]

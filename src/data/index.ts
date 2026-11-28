@@ -50,7 +50,7 @@ export function getMeetingType(kind: MeetingKind): MeetingType | undefined {
 /**
  * A scenario is ready when it and its sheet exist. Personas, fallbacks and the
  * "Also available" panels may already point to scenarios whose real output follows
- * later (S3, S4b, X4); those stay hidden until the files are added.
+ * later; those stay hidden until the files are added.
  */
 export function isScenarioReady(id: string | null | undefined): boolean {
   const scenario = getScenario(id);
