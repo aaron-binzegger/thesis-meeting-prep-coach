@@ -2,8 +2,10 @@ import { Copy, Download } from 'lucide-react';
 import { useRef, useState, type KeyboardEvent } from 'react';
 import { Button } from '../../components/Button/Button.tsx';
 import { Callout } from '../../components/Callout/Callout.tsx';
-import prompt from '../../data/coach-prompt.md?raw';
-import { comparison } from '../../data/index.ts';
+import { evaluation } from '../../data/index.ts';
+import { promptFromCopyPaste } from '../../lib/copyPastePrompt.ts';
+import copyPasteFile from '../../../docs/skill/copy-paste-prompt.md?raw';
+import skillUrl from '../../../docs/skill/thesis-meeting-prep-coach/SKILL.md?url';
 import styles from './UseIt.module.css';
 
 const TABS = [
@@ -13,7 +15,8 @@ const TABS = [
 
 type TabId = (typeof TABS)[number]['id'];
 
-const SKILL_URL = `${import.meta.env.BASE_URL}skill/SKILL.md`;
+/** The prompt inside the code block of docs/skill/copy-paste-prompt.md (ROLE to the end). */
+const prompt = promptFromCopyPaste(copyPasteFile);
 
 export default function UseIt() {
   const [active, setActive] = useState<TabId>('prompt');
@@ -66,15 +69,11 @@ export default function UseIt() {
 
       <section aria-labelledby="tested-heading" className={styles.section}>
         <h2 id="tested-heading">Where we tested it</h2>
-        <ul className={styles.models}>
-          {comparison.models.map((m) => (
-            <li key={m.name}>
-              <strong>{m.name}</strong>
-              <span>{m.tested}</span>
-              <span className={styles.muted}>{m.result}</span>
-            </li>
-          ))}
-        </ul>
+        <p>{evaluation.setup[0]}</p>
+        <p>
+          Final prompt (R3.1), runs that passed every hard criterion:{' '}
+          <strong>{evaluation.versions.find((v) => v.id === 'R3.1')?.hardPasses}</strong>
+        </p>
       </section>
 
       <Callout tone="privacy" className={styles.callout}>
@@ -113,7 +112,10 @@ export default function UseIt() {
             hidden={active !== 'prompt'}
             className={styles.panel}
           >
-            <p>Copy the prompt, paste it into a new chat, then add your notes.</p>
+            <p>
+              The guide below is our <code>copy-paste-prompt.md</code>. &ldquo;Copy prompt&rdquo;
+              copies only the prompt inside the code block, from ROLE to the end.
+            </p>
             <div className={styles.actions}>
               <Button variant="secondary" icon={<Copy size={18} />} onClick={copy}>
                 Copy prompt
@@ -124,8 +126,8 @@ export default function UseIt() {
             </div>
             {/* Scrollable region: needs focus so keyboard users can scroll it. */}
             {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
-            <pre className={styles.code} tabIndex={0} aria-label="Coach prompt text">
-              <code>{prompt}</code>
+            <pre className={styles.code} tabIndex={0} aria-label="copy-paste-prompt.md">
+              <code>{copyPasteFile}</code>
             </pre>
           </div>
 
@@ -141,7 +143,7 @@ export default function UseIt() {
               reusable setup.
             </p>
             <p>
-              <a href={SKILL_URL} download="SKILL.md" className={styles.download}>
+              <a href={skillUrl} download="SKILL.md" className={styles.download}>
                 <Download size={18} aria-hidden="true" />
                 <span>Download SKILL.md</span>
               </a>

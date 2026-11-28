@@ -30,21 +30,6 @@
   color: var(--ink-muted);
 }
 
-.models {
-  display: grid;
-  gap: var(--space-4);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.models li {
-  display: grid;
-  gap: var(--space-1);
-  padding-left: var(--space-4);
-  border-left: 2px solid var(--ruling);
-}
-
 .tabs {
   display: grid;
   gap: 0;

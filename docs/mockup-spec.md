@@ -68,7 +68,7 @@ thesis-meeting-prep-coach/
 │  ├─ workflows/deploy.yml  (deploy to GitHub Pages on push to main)
 │  └─ pull_request_template.md
 ├─ docs/
-│  ├─ prompts/              baseline.md, r1-structure.md, r2-guardrails.md, r3-final.md
+│  ├─ prompts/              baseline.md, r1-structure.md, r2-guardrails.md, r3.md, r3.1-final.md
 │  ├─ skill/                SKILL.md + copy-paste version for any AI tool
 │  ├─ evaluation.md         short summary of results + link to the report
 │  ├─ ai-use-disclosure.md

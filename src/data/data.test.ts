@@ -1,9 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { MAX_QUESTIONS, type PrepSheet, type Scenario } from '../types/prep-sheet.ts';
-import comparisonJson from './comparison.json';
 import fallbacksJson from './fallbacks.json';
 import {
-  comparison,
+  evaluation,
   fallbackScenarioId,
   getScenario,
   getSheet,
@@ -17,6 +16,8 @@ import meetingTypesJson from './meeting-types.json';
 import personasJson from './personas.json';
 import scenariosJson from './scenarios.json';
 import { agendaTotal, validatePersona, validateScenario, validateSheet } from './validate.ts';
+
+import evaluationMd from '../../docs/evaluation.md?raw';
 
 const sheetFiles = import.meta.glob<unknown>('./sheets/*.json', { eager: true, import: 'default' });
 
@@ -158,8 +159,8 @@ describe('data files match the types', () => {
     expect(kinds).toEqual(['followup', 'kickoff', 'midterm', 'presubmission', 'regular']);
   });
 
-  it('comparison.json has the four prompt iterations', () => {
-    expect(comparisonJson.iterations.map((i) => i.id)).toEqual(['baseline', 'R1', 'R2', 'R3']);
+  it('evaluation.json has the five prompt versions', () => {
+    expect(evaluation.versions.map((v) => v.id)).toEqual(['baseline', 'R1', 'R2', 'R3', 'R3.1']);
   });
 });
 
@@ -298,9 +299,45 @@ describe('data rules', () => {
       institutionalFacts(['Scope of 12 ECTS'], { notes, verifyFirst: ['Scope of 12 ECTS'] }),
     ).toHaveLength(1);
   });
+});
 
-  it('comparison status is set', () => {
-    expect(['placeholder', 'final']).toContain(comparison.status);
+describe('evaluation summary from docs/evaluation.md', () => {
+  /** The file as plain text: markdown emphasis removed, line endings normalised. */
+  const plain = evaluationMd.replace(/\r\n/g, '\n').replace(/\*/g, '');
+
+  it('copies every text verbatim', () => {
+    const texts = [
+      ...evaluation.setup,
+      ...evaluation.versions.flatMap((v) => [v.name, v.idea, v.hardPasses, v.softAvg]),
+      ...evaluation.findings,
+      ...evaluation.baselineDoes,
+      ...evaluation.limitations.flatMap((l) => [l.title, l.text]),
+      ...evaluation.gains,
+      evaluation.peerTest.note,
+    ];
+    expect(texts.filter((text) => !plain.includes(text))).toEqual([]);
+  });
+
+  it('has a table row for each version', () => {
+    for (const v of evaluation.versions) {
+      expect(plain, v.name).toContain(`| ${v.name} | ${v.idea} | ${v.hardPasses} | ${v.softAvg} |`);
+    }
+  });
+
+  it('shows peer test results only once the file has them', () => {
+    expect(evaluation.peerTest.status).toBe(
+      plain.includes('To be added: blind A/B comparison') ? 'coming-soon' : 'done',
+    );
+  });
+
+  it('contains no institutional facts', () => {
+    expect(
+      institutionalFacts([
+        ...evaluation.findings,
+        ...evaluation.baselineDoes,
+        ...evaluation.limitations.map((l) => l.text),
+      ]),
+    ).toEqual([]);
   });
 });
 
