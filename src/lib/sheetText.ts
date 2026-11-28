@@ -17,9 +17,31 @@ export function sheetToText(sheet: PrepSheet, scenario: Scenario, meetingTitle: 
   const heading = (text: string) => lines.push('', text, '-'.repeat(text.length));
 
   lines.push(`${meetingTitle} (${scenario.minutes} minutes)`, '='.repeat(meetingTitle.length + 13));
-  lines.push('', `Goal: ${sheet.goal}`);
+  if (sheet.goal) lines.push('', `Goal: ${sheet.goal}`);
 
   if (sheet.privacyWarning) lines.push('', `Note: ${sheet.privacyWarning}`);
+
+  for (const extra of sheet.extraBlocks ?? []) {
+    heading(extra.heading);
+    lines.push(extra.markdown);
+  }
+
+  if (sheet.clarifyingQuestions?.length) {
+    heading('Clarifying questions');
+    lines.push('Your notes are a bit thin. Answer these first.');
+    if (sheet.clarifyingLead) lines.push(sheet.clarifyingLead);
+    sheet.clarifyingQuestions.forEach((q, i) => lines.push(`${i + 1}. ${q}`));
+    if (sheet.clarifyingClosing) lines.push(sheet.clarifyingClosing);
+    if (sheet.exampleAnswer) {
+      heading('Example answers');
+      lines.push(sheet.exampleAnswer);
+    }
+  }
+
+  if (sheet.whatIBring) {
+    heading('What I bring');
+    sheet.whatIBring.forEach((item) => lines.push(`- ${item.label}: ${item.text}`));
+  }
 
   if (sheet.sinceLastTime) {
     heading('Since last time');
@@ -29,18 +51,14 @@ export function sheetToText(sheet: PrepSheet, scenario: Scenario, meetingTitle: 
     sheet.sinceLastTime.carriedOver.forEach((d) => lines.push(`- ${d}`));
   }
 
-  if (sheet.clarifyingQuestions?.length) {
-    heading('Clarifying questions');
-    lines.push('Your notes are a bit thin. Answer these first.');
-    sheet.clarifyingQuestions.forEach((q, i) => lines.push(`${i + 1}. ${q}`));
-  }
-
   heading('Agenda');
   let total = 0;
   sheet.agenda.forEach((item) => {
     total += item.minutes;
-    lines.push(`- ${item.minutes} min: ${item.topic} (${item.goal})`);
+    const time = item.time ? `${item.time} (${item.minutes} min)` : `${item.minutes} min`;
+    lines.push(`- ${time}: ${item.topic} (${item.goal})`);
   });
+  if (sheet.agendaNote) lines.push(sheet.agendaNote);
   lines.push(`Total: ${total} of ${scenario.minutes} minutes planned`);
 
   heading('Questions for your supervisor');
@@ -50,13 +68,16 @@ export function sheetToText(sheet: PrepSheet, scenario: Scenario, meetingTitle: 
       .slice(0, MAX_QUESTIONS)
       .filter((x) => x.priority === priority)) {
       lines.push(`${n}. [${priorityLabels[priority]}] ${q.text}`);
-      lines.push(`   From your notes: "${q.fromNotes}"`);
+      lines.push(`   From your notes: ${q.fromNotes}`);
       n += 1;
     }
   }
 
   heading('Verify first');
-  sheet.verifyFirst.forEach((v) => lines.push(`- ${v.item} (check: ${v.whereToCheck})`));
+  sheet.verifyFirst.forEach((v) => {
+    lines.push(`- ${v.item} (check: ${v.whereToCheck})`);
+    if (v.fromNotes) lines.push(`  From your notes: ${v.fromNotes}`);
+  });
 
   heading('Your supervisor decides');
   sheet.supervisorDecides.forEach((d) => {

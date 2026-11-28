@@ -61,12 +61,15 @@ export function SheetRow({ note, className, children, ...rest }: SheetRowProps) 
   );
 }
 
-/** A quote from the student's own notes, set like a pencilled margin note. */
+/**
+ * The coach's reference to the student's own notes, set like a pencilled margin note.
+ * The text is shown exactly as the coach wrote it, including its own quotation marks.
+ */
 export function MarginQuote({ children }: { children: ReactNode }) {
   return (
     <p className={styles.quote}>
       <span className={styles.quoteLabel}>From your notes</span>
-      <q>{children}</q>
+      <span>{children}</span>
     </p>
   );
 }

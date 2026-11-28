@@ -33,12 +33,14 @@ function SheetFragment() {
     <figure className={styles.example}>
       <div aria-hidden="true">
         <Sheet className={styles.sheet}>
-          <SheetSection>
-            <SheetRow>
-              <p className={styles.kicker}>Goal for this meeting</p>
-              <p className={styles.goal}>{sheet.goal}</p>
-            </SheetRow>
-          </SheetSection>
+          {sheet.goal && (
+            <SheetSection>
+              <SheetRow>
+                <p className={styles.kicker}>Goal for this meeting</p>
+                <p className={styles.goal}>{sheet.goal}</p>
+              </SheetRow>
+            </SheetSection>
+          )}
           {question && (
             <SheetSection heading="Question to ask first">
               <SheetRow
@@ -51,8 +53,11 @@ function SheetFragment() {
           )}
           {verify && (
             <SheetSection heading={<Highlight>Verify first</Highlight>}>
-              <SheetRow note={<p className={styles.meta}>{verify.whereToCheck}</p>}>
+              <SheetRow
+                note={verify.fromNotes ? <MarginQuote>{verify.fromNotes}</MarginQuote> : null}
+              >
                 <p>{verify.item}</p>
+                <p className={styles.meta}>{verify.whereToCheck}</p>
               </SheetRow>
             </SheetSection>
           )}

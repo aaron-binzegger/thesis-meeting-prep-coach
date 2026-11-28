@@ -62,17 +62,17 @@ const sampleQuestions: { priority: Priority; text: string; fromNotes: string }[]
   {
     priority: 'must',
     text: 'Which of my two ideas fits your research area better, and would you supervise either of them?',
-    fromNotes: 'idea A remote work tools in small firms?? idea B chatbots in customer service',
+    fromNotes: '"idea A remote work tools in small firms?? idea B chatbots in customer service"',
   },
   {
     priority: 'should',
     text: 'Is a survey realistic for the question, or would interviews give me better data?',
-    fromNotes: 'survey or interviews, no clue how many ppl',
+    fromNotes: '"survey or interviews, no clue how many ppl"',
   },
   {
     priority: 'if-time',
     text: 'Could you suggest one or two papers to start reading?',
-    fromNotes: 'literatur: where to start',
+    fromNotes: '"literatur: where to start"',
   },
 ];
 

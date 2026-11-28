@@ -67,8 +67,12 @@ export default function MeetingTwoSetup() {
           <details>
             <summary className={styles.summary}>Your kick-off sheet</summary>
             <div className={styles.sheetBody}>
-              <h3>Goal</h3>
-              <p>{sheet.goal}</p>
+              {sheet.goal && (
+                <>
+                  <h3>Goal</h3>
+                  <p>{sheet.goal}</p>
+                </>
+              )}
               <h3>Questions</h3>
               <ul>
                 {sheet.questions.map((q) => (
