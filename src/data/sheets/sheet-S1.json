@@ -1,88 +1,100 @@
 {
   "id": "sheet-S1",
-  "runId": "PLACEHOLDER",
-  "model": "Placeholder (real R3 output follows)",
-  "goal": "Leave the meeting knowing how to choose between your two topic ideas, and what your proposal needs.",
+  "runId": "R3.1-S1",
+  "model": "Claude Haiku 5.5, medium effort, 2026-11-27",
+  "extraBlocks": [
+    {
+      "heading": "Before I can help",
+      "markdown": "Not applicable. The notes contain enough information to build the preparation sheet, so the full sheet follows below."
+    }
+  ],
   "agenda": [
     {
       "minutes": 5,
-      "topic": "Your two ideas",
-      "goal": "Present both ideas in two sentences each"
+      "time": "0–5",
+      "topic": "Opening and context",
+      "goal": "Confirm the kick-off purpose and your open questions"
     },
     {
       "minutes": 10,
-      "topic": "Comparing the ideas",
-      "goal": "Hear which questions help you decide, without being told the answer"
+      "time": "5–15",
+      "topic": "Present the two topic ideas",
+      "goal": "Show the HR chatbot idea and the predictive maintenance idea, with one slide or sketch each"
     },
     {
-      "minutes": 8,
-      "topic": "Method and sources",
-      "goal": "Check what each idea would need"
+      "minutes": 10,
+      "time": "15–25",
+      "topic": "Feedback on both ideas",
+      "goal": "Hear which direction the supervisor thinks is feasible and what they would change"
     },
     {
       "minutes": 5,
-      "topic": "Proposal and next steps",
-      "goal": "Clarify what to write next"
+      "time": "25–30",
+      "topic": "Next steps",
+      "goal": "Agree on what is needed before the next meeting and when it happens"
     }
   ],
   "questions": [
     {
       "priority": "must",
-      "text": "What would you look at to decide between an idea on social media and study stress and one on remote work and team trust?",
-      "fromNotes": "A feels easier but B more interesting"
+      "text": "Which of the two topic ideas do you think is more suitable for a bachelor thesis, and what would you change in it?",
+      "fromNotes": "\"HR chatbot for onboarding OR predictive maintenance for a lift company\""
     },
     {
       "priority": "must",
-      "text": "Can I still change the topic after the proposal?",
-      "fromNotes": "maybe ask if topic can change later"
+      "text": "The predictive maintenance idea depends on a client that is not confirmed yet. How should we proceed while the client is open?",
+      "fromNotes": "\"client not confirmed yet\""
     },
     {
       "priority": "should",
-      "text": "What should the proposal contain, and who reads it?",
-      "fromNotes": "need to ask about the proposal"
+      "text": "The idea of comparing two LLMs came up. Is that a direction you would consider, and how would it relate to the two topics?",
+      "fromNotes": "\"idea: compare two LLMs maybe\""
     },
     {
       "priority": "should",
-      "text": "Which methods suit each idea, and how do I judge whether I can manage them?",
-      "fromNotes": "method - not sure, quant or qual"
+      "text": "What do you expect from the pitch at the kick-off, and how long should it be?",
+      "fromNotes": "\"supervisor said 'be ready to pitch' - what even goes in a pitch?? 5 slides?\""
+    },
+    {
+      "priority": "should",
+      "text": "The notes mention a Python preference and no cloud use. Are these constraints workable for the topics you are considering?",
+      "fromNotes": "\"python ok, cloud no\""
     },
     {
       "priority": "if-time",
-      "text": "Who will be the second reader, and what role do they play?",
-      "fromNotes": "who is 2nd reader??"
+      "text": "How many meetings can we expect during the thesis?",
+      "fromNotes": "\"also how many meetings will we even have\""
     }
   ],
   "verifyFirst": [
     {
-      "item": "How long the proposal should be",
-      "whereToCheck": "Your programme's regulations"
+      "item": "Task description and due date",
+      "whereToCheck": "Check with your supervisor or the programme regulations (study office).",
+      "fromNotes": "\"task description - when due??\""
     },
     {
-      "item": "Who the second reader is",
-      "whereToCheck": "Your supervisor"
-    },
-    {
-      "item": "Whether the topic can be changed later",
-      "whereToCheck": "Study office"
+      "item": "Scope of 12 credits and expected workload",
+      "whereToCheck": "Check with your supervisor or the programme regulations.",
+      "fromNotes": "\"worried 12 credits is too much work / or too little??\""
     }
   ],
   "supervisorDecides": [
     {
-      "decision": "Which of the two ideas to pursue",
+      "decision": "Topic",
       "options": [
-        "Idea A: social media use and study stress",
-        "Idea B: remote work and team trust",
-        "Keep both open for one more week"
+        "HR chatbot for onboarding",
+        "predictive maintenance for a lift company",
+        "comparison of two LLMs"
       ]
     },
     {
-      "decision": "Which method direction to explore first",
-      "options": [
-        "A survey (quantitative)",
-        "Interviews (qualitative)",
-        "Decide after more reading"
-      ]
+      "decision": "Client for the predictive maintenance topic",
+      "options": ["confirmed client", "no client, to be decided with the supervisor"]
+    },
+    {
+      "decision": "Pitch format",
+      "options": ["5 slides", "other format as the supervisor specifies"]
     }
   ],
-  "nextStep": "Write two sentences for each idea: what you would ask, and what you have already found."
+  "nextStep": "Prepare a short one-slide sketch for each of the two topic ideas: the problem, the data or method you would use, and one open question for each."
 }

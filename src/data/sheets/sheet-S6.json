@@ -1,86 +1,97 @@
 {
   "id": "sheet-S6",
-  "runId": "PLACEHOLDER",
-  "model": "Placeholder (real R3 output follows)",
-  "goal": "Decide how to continue with your thesis despite the data access problem.",
+  "runId": "R3.1-S6",
+  "model": "Claude Haiku 5.5, medium effort, 2026-11-27",
   "sinceLastTime": {
-    "decided": ["The method has to be settled first"],
-    "carriedOver": ["Whether the data access will ever work", "The plan if it does not"]
+    "decided": [
+      "Topic: delivery delay prediction using data from the company.",
+      "Method: interviews with 5 logistics people plus an ML model.",
+      "Research questions: keep 3 for now. Your supervisor will review them in this meeting."
+    ],
+    "carriedOver": [
+      "Dataset from the company: when it arrives is still open. The contact has not replied for 2 weeks.",
+      "Expert: not yet known.",
+      "Method and research questions: both are questioned again in your notes (see below)."
+    ]
   },
   "agenda": [
     {
-      "minutes": 8,
-      "topic": "Data access",
-      "goal": "Explain the situation and what is still unclear"
-    },
-    {
-      "minutes": 12,
-      "topic": "Method",
-      "goal": "Settle the method you need to clarify"
+      "minutes": 5,
+      "time": "0–5",
+      "topic": "Where I am",
+      "goal": "Show literature status"
     },
     {
       "minutes": 10,
-      "topic": "Fallback",
-      "goal": "Discuss options if the data does not come"
+      "time": "5–15",
+      "topic": "Dataset",
+      "goal": "Agree how to proceed without a reply"
+    },
+    {
+      "minutes": 8,
+      "time": "15–23",
+      "topic": "Method",
+      "goal": "Get your supervisor's view on a change"
     },
     {
       "minutes": 5,
-      "topic": "Structure",
-      "goal": "Get a view on the structure of your pages"
+      "time": "23–28",
+      "topic": "Scope and expert",
+      "goal": "Decide on research questions, clarify expert"
     },
     {
-      "minutes": 5,
-      "topic": "Next steps",
-      "goal": "Agree on what is next"
+      "minutes": 2,
+      "time": "28–30",
+      "topic": "Wrap-up",
+      "goal": "Confirm next steps"
     }
   ],
   "questions": [
     {
       "priority": "must",
-      "text": "What are my options if the data does not arrive?",
-      "fromNotes": "was passiert wenn die Daten nie kommen?"
+      "text": "Dataset: what should I do while the company contact does not reply, and what if the data does not arrive?",
+      "fromNotes": "\"Datensatz von der Firma kommt nicht - Kontakt antwortet seit 2 Wochen nicht.\""
     },
     {
       "priority": "must",
-      "text": "Does public data fit my research question?",
-      "fromNotes": "maybe use public data instead?"
+      "text": "Method: may I change from interviews to a survey, and what would you recommend? (changes a decision from meeting 1)",
+      "fromNotes": "\"will fragen ob ich Methode ändern darf (survey statt interviews).\""
     },
     {
       "priority": "should",
-      "text": "How can I settle the method when the data is uncertain?",
-      "fromNotes": "Methode klären, hab ich noch nicht"
+      "text": "Scope: should I keep 3 research questions or narrow to 1? (changes a decision from meeting 1)",
+      "fromNotes": "\"Scope too big? 3 research questions, maybe nur 1.\""
     },
     {
       "priority": "should",
-      "text": "Does the structure of my first five pages work?",
-      "fromNotes": "I wrote 5 pages but dont know if the structure is right"
-    },
-    {
-      "priority": "if-time",
-      "text": "How do I plan the time when the data is uncertain?",
-      "fromNotes": "Zeitplan ist eng"
+      "text": "Expert: who will be my expert?",
+      "fromNotes": "\"Experte noch nicht bekannt??\""
     }
   ],
   "verifyFirst": [
     {
-      "item": "The deadline for the thesis",
-      "whereToCheck": "Your programme's regulations"
+      "item": "Mid-term presentation date and format",
+      "whereToCheck": "study office or programme regulations."
     },
     {
-      "item": "Whether a change of data source needs approval",
-      "whereToCheck": "Your supervisor"
+      "item": "Expert assignment process and timing",
+      "whereToCheck": "your supervisor or study office."
+    },
+    {
+      "item": "Whether a method change is allowed and what it requires",
+      "whereToCheck": "programme regulations, then your supervisor."
     }
   ],
   "supervisorDecides": [
     {
-      "decision": "How to handle the data problem",
-      "options": [
-        "Wait for the company data",
-        "Switch to public data",
-        "Narrow the question to what you have"
-      ]
+      "decision": "Method",
+      "options": ["interviews + ML model", "survey instead of interviews"]
+    },
+    { "decision": "Research questions", "options": ["3", "1"] },
+    {
+      "decision": "Data if the company dataset stays unavailable",
+      "options": ["wait for company data", "other data source"]
     }
   ],
-  "nextStep": "Write two lines on what the data access problem is and what you already tried, with no company names.",
-  "privacyWarning": "Your notes mention a company name and a colleague. Remove confidential company details and personal names before you use or share them."
+  "nextStep": "Send the company contact one short follow-up asking for an expected date for the dataset, and bring the reply (or the lack of one) to the meeting."
 }

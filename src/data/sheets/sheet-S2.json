@@ -1,76 +1,94 @@
 {
   "id": "sheet-S2",
-  "runId": "PLACEHOLDER",
-  "model": "Placeholder (real R3 output follows)",
-  "goal": "Find a direction for a topic by talking about your interests and what the supervisor works on.",
+  "runId": "R3.1-S2",
+  "model": "Claude Haiku 5.5, medium effort, 2026-11-27",
+  "whatIBring": [
+    { "label": "Interests", "text": "\"I like data stuff and web dev.\"" },
+    {
+      "label": "Experience",
+      "text": "\"did a small dashboard project at work (logistics company, part-time).\""
+    },
+    { "label": "Constraints", "text": "part-time work; \"no company partner.\"" }
+  ],
   "agenda": [
     {
       "minutes": 5,
-      "topic": "Introduce yourself",
-      "goal": "Say what you are curious about, even if vague"
+      "time": "0–5",
+      "topic": "Introductions and my background",
+      "goal": "Supervisor understands my starting point"
     },
     {
-      "minutes": 8,
-      "topic": "Supervisor areas",
-      "goal": "Hear which areas the supervisor works in"
+      "minutes": 10,
+      "time": "5–15",
+      "topic": "How topic finding works with you",
+      "goal": "Clear picture of the process"
+    },
+    {
+      "minutes": 10,
+      "time": "15–25",
+      "topic": "What a good starting point looks like",
+      "goal": "Know what to prepare"
     },
     {
       "minutes": 5,
-      "topic": "Narrowing interests",
-      "goal": "Find one or two questions worth exploring"
-    },
-    {
-      "minutes": 2,
-      "topic": "Next step",
-      "goal": "Agree what you explore before meeting 2"
+      "time": "25–30",
+      "topic": "Next steps and next meeting",
+      "goal": "Agree on what to bring back"
     }
   ],
   "questions": [
     {
       "priority": "must",
-      "text": "Which areas do you supervise, and which of them might connect to marketing or sport?",
-      "fromNotes": "maybe something with marketing? or not"
+      "text": "How does topic finding work with you: do students choose from a list, propose their own idea, or both?",
+      "fromNotes": "\"should I just take one of the topics from the list?\""
     },
     {
       "priority": "must",
-      "text": "How can I tell whether an interest is specific enough to become a thesis topic?",
-      "fromNotes": "like sports but not sure thats a topic"
+      "text": "Is a company partner required, or can I work without one?",
+      "fromNotes": "\"no company partner. do I have to find one myself??\""
     },
     {
       "priority": "should",
-      "text": "What do you expect from me in the first weeks?",
-      "fromNotes": "what does supervisor expect from me??"
+      "text": "What does a good starting point look like at the kick-off?",
+      "fromNotes": "\"what do they even expect me to bring if I have nothing?\""
     },
     {
       "priority": "should",
-      "text": "How do I start reading in a field when I have no research experience?",
-      "fromNotes": "no experience w/ research"
-    },
-    {
-      "priority": "if-time",
-      "text": "How often do we meet, and how should I prepare?",
-      "fromNotes": "how many meetings do we get?"
+      "text": "How can my dashboard project experience be a useful starting point, and what should I prepare for the next meeting?",
+      "fromNotes": "\"did a small dashboard project at work\""
     }
   ],
   "verifyFirst": [
     {
-      "item": "How many meetings you get with your supervisor",
-      "whereToCheck": "Your supervisor"
+      "item": "Topic list",
+      "whereToCheck": "Ask your supervisor where it is, or check the programme regulations or study office."
     },
     {
-      "item": "What the formal steps for choosing a topic are",
-      "whereToCheck": "Your programme's regulations"
+      "item": "Company partner",
+      "whereToCheck": "Ask your supervisor whether it is expected, and check the programme regulations if you need the rule in writing."
+    },
+    {
+      "item": "Meeting dates and thesis timeline",
+      "whereToCheck": "Check with the study office or your supervisor."
     }
   ],
   "supervisorDecides": [
     {
-      "decision": "How to find a direction",
+      "decision": "Topic source",
       "options": [
-        "Start from the supervisor's areas",
-        "Start from your own interests",
-        "Do a short reading round on both first"
+        "topic from the list",
+        "own proposal based on your interests",
+        "another approach your supervisor suggests"
+      ]
+    },
+    {
+      "decision": "External partner",
+      "options": [
+        "with a company partner",
+        "without a company partner",
+        "another arrangement your supervisor suggests"
       ]
     }
   ],
-  "nextStep": "Write down three things you enjoyed studying or doing, in one line each, and bring them along."
+  "nextStep": "Write a short paragraph on your dashboard project at work, plus a list of data and web dev areas that interest you. Bring both to show your starting point."
 }
