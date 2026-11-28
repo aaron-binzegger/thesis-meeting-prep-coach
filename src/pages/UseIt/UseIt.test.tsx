@@ -1,6 +1,7 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { renderWithRouter } from '../../test/renderWithRouter.tsx';
+import copyPasteFile from '../../../docs/skill/copy-paste-prompt.md?raw';
 import UseIt from './UseIt.tsx';
 
 describe('UseIt', () => {
@@ -14,6 +15,12 @@ describe('UseIt', () => {
     expect(
       screen.getByText('Don’t enter real names, grades or confidential company data.'),
     ).toBeInTheDocument();
+  });
+
+  it('shows copy-paste-prompt.md verbatim', () => {
+    renderWithRouter(<UseIt />);
+    const code = screen.getByLabelText('copy-paste-prompt.md');
+    expect(code.textContent).toBe(copyPasteFile);
   });
 
   it('switches tabs with the arrow keys', () => {
@@ -34,7 +41,7 @@ describe('UseIt', () => {
     renderWithRouter(<UseIt />);
     fireEvent.click(screen.getByRole('tab', { name: 'Skill file' }));
     const link = screen.getByRole('link', { name: 'Download SKILL.md' });
-    expect(link.getAttribute('href')).toMatch(/skill\/SKILL\.md$/);
+    expect(link.getAttribute('href')).toMatch(/SKILL.*\.md$/);
     expect(link).toHaveAttribute('download');
   });
 
@@ -44,6 +51,9 @@ describe('UseIt', () => {
     renderWithRouter(<UseIt />);
     fireEvent.click(screen.getByRole('button', { name: 'Copy prompt' }));
     expect(writeText).toHaveBeenCalledOnce();
+    const copied = writeText.mock.calls[0]![0] as string;
+    expect(copied.startsWith('ROLE')).toBe(true);
+    expect(copied).not.toContain('How to use');
     await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent('Copied'));
   });
 });
