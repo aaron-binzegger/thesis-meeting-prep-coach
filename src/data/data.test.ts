@@ -50,11 +50,11 @@ const coachSource = (runId: string) =>
   sources.find((s) => s.kind === 'coach' && s.frontMatter.runId === runId);
 
 /**
- * Scenarios whose real output follows later (R3.1-S3, R3.1-S4b, R3.1-X4). Personas,
- * fallbacks and meeting types may point to them; the UI hides them until the files exist.
+ * Scenarios whose real output follows later. Personas, fallbacks and meeting types may point
+ * to them; the UI hides them until the files exist. Empty now: every output is in data-source/.
  * Listing them here keeps a typo in a link from being hidden silently.
  */
-const PENDING_SCENARIOS = ['S3', 'S4', 'X4'];
+const PENDING_SCENARIOS: string[] = [];
 
 /**
  * Patterns that would be institutional facts in a coach sheet (zero-institution-facts policy):
@@ -110,18 +110,29 @@ function scenarioForSheet(sheet: PrepSheet): Scenario | undefined {
 }
 
 /**
- * Finds institutional facts in texts. With `allowedNotes`, a match is allowed only if the
- * exact phrase is in those input notes (the coach repeats the student's words). Only the
- * "Verify first" texts are checked with `allowedNotes`.
+ * Finds institutional facts in texts. A match is allowed only if the exact phrase is in the
+ * scenario's input notes (the coach repeats the student's own words) AND the sheet shows that
+ * phrase under "Verify first". Example: X4 repeats "60 pages" from the notes in a question and
+ * lists "whether 60 pages fits it" under Verify first.
  */
-function institutionalFacts(texts: string[], allowedNotes?: string): string[] {
+function institutionalFacts(
+  texts: string[],
+  allowed?: { notes: string; verifyFirst: string[] },
+): string[] {
   const found: string[] = [];
   for (const text of texts) {
     for (const [name, pattern] of INSTITUTIONAL_FACT_PATTERNS) {
       const match = pattern.exec(text);
       if (!match) continue;
-      if (allowedNotes !== undefined && allowedNotes.includes(match[0])) continue;
-      found.push(`${name} "${match[0]}" in: "${text}"`);
+      const phrase = match[0];
+      if (
+        allowed &&
+        allowed.notes.includes(phrase) &&
+        allowed.verifyFirst.some((v) => v.includes(phrase))
+      ) {
+        continue;
+      }
+      found.push(`${name} "${phrase}" in: "${text}"`);
     }
   }
   return found;
@@ -259,18 +270,33 @@ describe('data rules', () => {
   it.each(sheets.map((s) => [s.id, s] as const))(
     '%s contains no institutional facts',
     (_, sheet) => {
-      const notes = scenarioForSheet(sheet)?.notes ?? '';
-      expect(institutionalFacts(sheetTexts(sheet))).toEqual([]);
-      expect(institutionalFacts(verifyTexts(sheet), notes)).toEqual([]);
+      const allowed = {
+        notes: scenarioForSheet(sheet)?.notes ?? '',
+        verifyFirst: verifyTexts(sheet),
+      };
+      expect(institutionalFacts([...sheetTexts(sheet), ...verifyTexts(sheet)], allowed)).toEqual(
+        [],
+      );
     },
   );
 
-  it("allows a student's own phrase only under Verify first and only if it is in the notes", () => {
+  it("allows a student's own phrase only if it is in the notes and under Verify first", () => {
     const notes = 'worried 12 credits is too much work';
-    expect(institutionalFacts(['Scope of 12 credits'], notes)).toEqual([]);
+    const allowed = { notes, verifyFirst: ['Scope of 12 credits'] };
+    expect(institutionalFacts(['Scope of 12 credits'], allowed)).toEqual([]);
+    expect(institutionalFacts(['Is 12 credits enough?'], allowed)).toEqual([]);
     expect(institutionalFacts(['Scope of 12 credits'])).toHaveLength(1);
-    expect(institutionalFacts(['Scope of 15 credits'], notes)).toHaveLength(1);
-    expect(institutionalFacts(['Scope of 12 ECTS'], notes)).toHaveLength(1);
+    // In the notes, but not under Verify first.
+    expect(
+      institutionalFacts(['Is 12 credits enough?'], { notes, verifyFirst: ['Workload'] }),
+    ).toHaveLength(1);
+    // Under Verify first, but not in the notes.
+    expect(
+      institutionalFacts(['Scope of 15 credits'], { notes, verifyFirst: ['Scope of 15 credits'] }),
+    ).toHaveLength(1);
+    expect(
+      institutionalFacts(['Scope of 12 ECTS'], { notes, verifyFirst: ['Scope of 12 ECTS'] }),
+    ).toHaveLength(1);
   });
 
   it('comparison status is set', () => {
