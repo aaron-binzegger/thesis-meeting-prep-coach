@@ -110,9 +110,18 @@ export default function HowItWorks() {
           We started with a plain prompt and improved it in four steps. Every version ran on the
           same fictional notes.
         </p>
-        <div className={styles.tableWrap}>
+        {/* Scrolls sideways on narrow phones: needs focus so keyboard users can scroll it. */}
+        <div
+          className={styles.tableWrap}
+          role="region"
+          aria-labelledby="versions-caption"
+          // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+          tabIndex={0}
+        >
           <table className={styles.table}>
-            <caption className={styles.caption}>Prompt versions and test results</caption>
+            <caption id="versions-caption" className={styles.caption}>
+              Prompt versions and test results
+            </caption>
             <thead>
               <tr>
                 <th scope="col">Version</th>
