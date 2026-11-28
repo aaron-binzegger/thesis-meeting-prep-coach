@@ -8,48 +8,77 @@ Turn messy notes into a one-page prep sheet for your next thesis supervisor meet
 
 **Live demo:** https://aaron-binzegger.github.io/thesis-meeting-prep-coach/
 
-<!-- TODO: screenshot or GIF of the main flow (docs/screenshots/) -->
+![Start page with an example prep sheet](docs/screenshots/welcome.png)
 
-> TODO: add a screenshot or GIF of the main flow.
+> Student project at HSLU. This is **not official HSLU advice**, and the app uses no HSLU branding.
 
 ## The problem
 
 Students arrive at thesis meetings with messy notes, forget questions and leave without clear next steps.
 
-TODO: expand with one or two sentences from our project report.
-
 ## What the coach does
 
-- Turns your notes into an **agenda**
-- **Ranks your questions** (Must / Should / If time)
-- Builds a **"Verify first"** list
-- Lists what **your supervisor decides**
-- Suggests **one next step**
+The coach is a prompt. You give it your rough notes, and it hands back a one-page prep sheet that you and your supervisor can check. It:
+
+- turns your notes into an **agenda** that fits the time you have
+- **ranks your questions** (Must / Should / If time)
+- builds a **"Verify first"** list for rules and dates it never states itself
+- lists what **your supervisor decides**
+- suggests **one next step**
 
 ## Focus: the first two meetings
 
-TODO: explain the focus on the kick-off (including students without a topic idea) and the follow-up meeting, and how context is carried from meeting 1 to meeting 2.
+- **Kick-off:** turns first ideas and open questions into a clear agenda.
+- **No idea yet:** students without a topic get a "What I bring" block (interests, experience, constraints) instead of topic suggestions. The topic stays the student's and the supervisor's decision.
+- **Second meeting with context:** the notes from meeting 1 carry over. The sheet starts with "Since last time" (decided / carried over), so decisions are not reopened by accident.
+
+Later meetings (regular, mid-term, pre-submission) are shown for context. The pre-submission example is a real test output.
+
+![Mia's second meeting: "Since last time" with what was decided and carried over](docs/screenshots/mia-meeting-2-since-last-time.png)
 
 ## How it works
 
-TODO: prompt workflow diagram (baseline → R1 → R2 → R3) and link to [`docs/prompts/`](docs/prompts/).
+```mermaid
+flowchart LR
+  B[Baseline] --> R1[R1 Structure] --> R2[R2 Guardrails] --> R3[R3 Meeting-aware] --> R31[R3.1 Final]
+```
+
+- **Baseline:** "Make a meeting plan from these notes"
+- **R1 Structure:** role, format, max. 6 ranked, traceable questions
+- **R2 Guardrails:** no institutional facts, _Verify first_, _Supervisor decides_
+- **R3 Meeting-aware:** "What I bring" (no idea yet), _Since last time_, clarifying step
+- **R3.1 Final:** 5 targeted fixes from R3
+
+Every prompt version is in [`docs/prompts/`](docs/prompts/). If the notes are too thin, the coach first asks clarifying questions; otherwise it writes the sheet. The student and the supervisor check it.
 
 > Prototype: the sheets shown are real outputs of our final prompt, generated in our test runs. The prototype itself does not call an AI.
 
+![Compare view: the plain AI prompt next to the coach for Luca, who has no topic yet](docs/screenshots/compare-luca.png)
+
 ## Use it in your own AI
 
-TODO: short intro and link to [`docs/skill/`](docs/skill/).
+The coach works in any AI chat tool. [`docs/skill/`](docs/skill/) has:
+
+- [`copy-paste-prompt.md`](docs/skill/copy-paste-prompt.md): the prompt for any AI chat, with notes for a ChatGPT custom GPT or a Gemini Gem
+- [`thesis-meeting-prep-coach/SKILL.md`](docs/skill/thesis-meeting-prep-coach/SKILL.md): the same coach as a Claude skill
+
+The app's "Use it in your own AI" page shows the prompt with a copy button and offers `SKILL.md` as a download.
 
 ## Evaluation in short
 
-TODO: key results and link to [`docs/evaluation.md`](docs/evaluation.md).
+- The baseline ("Make a meeting plan from these notes") passed the hard criteria in 1 / 6 runs. It **suggests three thesis topics to a student who has none**.
+- **No institutional facts in any of 27 runs** of R2–R3.1, including the stress tests and the ChatGPT/Gemini runs.
+- R3.1 Final: 4 / 7 hard passes (stress 3 / 3, ChatGPT/Gemini 3 / 4), soft average 2.96.
+- **Limitation (decision blind spot):** when the student doubts a decision indirectly ("not sure if comparing just 2 is enough"), Haiku never marks it as questioning the meeting-1 decision. Model capability matters here, not only the prompt.
+
+Setup, rubric, all results and where it does not work: [`docs/evaluation.md`](docs/evaluation.md). The peer test with classmates is still running; its results will be added there.
 
 ## Prototype limitations
 
-- The outputs are **pre-generated**; there is **no live AI** call.
+- The outputs are **pre-generated**; there is **no live AI** call. Notes you type yourself get the sheet of a similar fictional student, marked as an example.
 - All personas and notes are **fictional**.
+- The sheets are shown exactly as the model wrote them, including the weaknesses described in [`docs/evaluation.md`](docs/evaluation.md).
 - This is a student project, **not official HSLU advice**.
-- TODO: add further limitations found during testing.
 
 ## Run locally
 
@@ -77,24 +106,28 @@ npm run dev
 ```
 src/
 ├─ pages/        one folder per screen
-├─ test/         test setup and helpers
+├─ components/   prep sheet, compare view, demo panel, shared UI
+├─ data/         personas, scenarios, sheets/*.json, evaluation summary
+├─ types/        data model (prep-sheet.ts)
+├─ state/        in-memory session (no browser storage)
+├─ styles/       tokens, global and print styles
 ├─ App.tsx       routes (HashRouter)
 └─ main.tsx      entry point
-docs/            build spec, prompts, skill, evaluation (TODO)
+data-source/     verbatim test outputs (coach runs and baselines)
+docs/            spec, prompts, skill, evaluation, AI-use disclosure, screenshots
 .github/         CI, deploy workflow, PR template
 ```
-
-TODO: update once `components/`, `data/`, `types/` and `styles/` exist.
 
 ## Responsible use and privacy
 
 - Don't enter real names, grades or confidential company data.
 - The app runs entirely in your browser. It stores nothing and sends nothing.
-- TODO: add notes on human oversight (the student and supervisor check every sheet).
+- The sheet is a starting point. You and your supervisor check it, and your supervisor has the final say on what happens in your thesis.
+- The coach never states university rules, dates or deadlines. It lists them under "Verify first" for you to check with your supervisor or in your programme's regulations.
 
-## AI-use disclosure
+## AI use
 
-The app code was written with **Claude Code**. TODO: short summary and link to [`docs/ai-use-disclosure.md`](docs/ai-use-disclosure.md).
+We tested the prompt with Claude Haiku 5.5, ChatGPT and Gemini; the sheets in the app are verbatim test outputs. Claude helped with planning, test materials, pre-scoring and drafting, and we checked every score and text. The app code was written with **Claude Code**. Details: [`docs/ai-use-disclosure.md`](docs/ai-use-disclosure.md).
 
 ## Authors
 
