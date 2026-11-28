@@ -33,12 +33,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Compare view: plain AI output next to the coach sheet, with annotated differences, laid out for a 1280 px projector.
 - "Also available" panels on the Journey, including the pre-submission example sheet (X4).
 - How it works page: workflow diagram, what the coach never does, prompt iterations and key results, privacy and limitations.
-- Use it in your own AI page: copy-paste prompt and a downloadable `SKILL.md` (placeholders until the final prompt is in).
+- Use it in your own AI page: copy-paste prompt and a downloadable `SKILL.md`.
 - Real test outputs in `data-source/` (coach runs R3.1-S1, S2, S3, S4b, S5, S6, R3-X1 and R3.1-X4; baselines B-S1, S2, S4, S5, S6).
 - Prep sheet fields for real outputs: verbatim extra blocks, "What I bring", agenda times as written, a note under the agenda, "From your notes" under Verify first, and decisions without listed options.
 - Clarifying state (R3-X1): the questions first, then "Use example answers" shows the fixed answer and the sheet. Shown for typed kick-off notes under 15 words and on How it works.
 - `src/data/fallbacks.json`: which example sheet typed notes get. The first ready scenario in each list wins.
 - Data tests: every sheet's runId matches a file in `data-source/coach/`, model and minutes come from the front matter, and every text is copied verbatim from its source.
+- `docs/evaluation.md`, all prompt versions in `docs/prompts/` (baseline, R1, R2, R3, R3.1), the skill files in `docs/skill/` and `docs/ai-use-disclosure.md`.
+- How it works shows the real evaluation: the prompt versions with hard passes and soft average, what the plain prompt did, the final results and where the coach does not work, with a link to `docs/evaluation.md`. Every text comes from that file, and a test checks it.
+- Peer test section on How it works, marked "Results coming soon".
+- Screenshots of the main screens in `docs/screenshots/`.
+- Complete README: focus, prompt workflow, use in your own AI, evaluation in short, limitations, privacy, AI use and screenshots.
 
 ### Changed
 
@@ -51,8 +56,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Demo personas show only the meetings that have a real output: Mia and Jonas both meetings, Luca the kick-off, Sara the follow-up. The pre-submission example on the Journey is the real X4 output.
 - The institutional-facts check covers every text on the sheet. It allows a phrase only if it is the student's own words from the notes and the sheet shows it under Verify first (X4 repeats "60 pages" in a question and lists it under Verify first).
 
+- Use it in your own AI shows `docs/skill/copy-paste-prompt.md` as it is. "Copy prompt" copies only the prompt in its code block, and the download is `docs/skill/thesis-meeting-prep-coach/SKILL.md`.
+- "Where we tested it" on Use it in your own AI takes its numbers from the evaluation.
+- The spec lists the prompt files as they are named in `docs/prompts/`.
+
 ### Removed
 
 - Placeholder sheets S3, S4 and X4.
+- Placeholder prompt comparison (`comparison.json`), placeholder prompt and placeholder `SKILL.md`.
 
 [Unreleased]: https://github.com/aaron-binzegger/thesis-meeting-prep-coach/commits/main
