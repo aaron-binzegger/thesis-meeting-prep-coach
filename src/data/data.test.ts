@@ -36,7 +36,7 @@ const INSTITUTIONAL_FACT_PATTERNS: [string, RegExp][] = [
 
 function sheetTexts(sheet: (typeof sheets)[number]): string[] {
   return [
-    sheet.goal,
+    ...(sheet.goal ? [sheet.goal] : []),
     sheet.nextStep,
     ...(sheet.clarifyingQuestions ?? []),
     ...(sheet.sinceLastTime?.decided ?? []),
