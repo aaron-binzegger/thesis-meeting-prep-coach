@@ -28,3 +28,6 @@ Thumbs.db
 
 # Claude Code personal settings
 .claude/settings.local.json
+
+# Handover folder from the project notes (copied into data-source/ and docs/)
+Repo Handover/

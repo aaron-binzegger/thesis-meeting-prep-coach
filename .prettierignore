@@ -5,3 +5,7 @@ package-lock.json
 docs/mockup-spec.md
 # Verbatim test outputs: never reformat
 data-source
+# Verbatim prompts, skill and evaluation: never reformat
+docs/prompts
+docs/skill
+docs/evaluation.md
